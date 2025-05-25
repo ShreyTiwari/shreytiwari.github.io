@@ -1,17 +1,142 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
-  <header id="header" class="d-flex align-items-center">
-    <div class="container d-flex flex-column align-items-center">
-    </div>
-  </header>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
-<body>  
-  <script>
-    window.location.href = "https://shreytiwari.com";
-  </script>
+<body>
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <header>
+    <nav>
+      <div class="nav-container">
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#publications">Publications</a></li>
+        </ul>
+        <div class="social-links-header">
+          <a href="mailto:shrey@cmu.edu" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://x.com/shrey_twr" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://github.com/ShreyTiwari" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://scholar.google.com/citations?user=0KnT458AAAAJ" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero">
+      <div class="container">
+        <h1>Shrey Tiwari</h1>
+        <p>PhD Student</p>
+        <p>Carnegie Mellon University</p>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <h2>About Me</h2>
+        <div class="about-content">
+          <div class="profile-image">
+            <img src="images/profile.jpg" alt="Shrey Tiwari - PhD Student at Carnegie Mellon University">
+          </div>
+          <div class="bio">
+            <p>Hey!</p>
+            <p>I'm a software engineering PhD student in the Software and Societal Systems Department at Carnegie Mellon University. I completed my undergraduate degree in Computer Science and Engineering from PES University in 2020.</p>
+            <p>My research interests lie in the domain of <strong>Software Reliability</strong> and <strong>Cloud Computing</strong>. I have interned at Microsoft Research India, where I was advised by Dr. Akash Lal as part of the Cloud Reliability team. Prior to that, I was a software engineer at Citrix Systems, working with the VPN Gateway Solutions team.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="news">
+      <div class="container">
+        <h2>News & Updates</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">March 2024</div>
+              <h3>Paper Accepted at Conference</h3>
+              <p>Our paper "Title of the Paper" has been accepted at [Conference Name].</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">February 2024</div>
+              <h3>Research Grant Awarded</h3>
+              <p>Received a grant from [Funding Organization] for our research on [Topic].</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">January 2024</div>
+              <h3>Conference Presentation</h3>
+              <p>Presented our work at [Conference Name] in [Location].</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">December 2023</div>
+              <h3>New Research Project</h3>
+              <p>Started a new collaboration with [Collaborator] on [Project Topic].</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="container">
+        <h2>Research</h2>
+        <div class="research-grid">
+          <div class="research-item">
+            <h3>Research Area 1</h3>
+            <p>Description of your research area and current projects.</p>
+          </div>
+          <div class="research-item">
+            <h3>Research Area 2</h3>
+            <p>Description of your research area and current projects.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <div class="container">
+        <h2>Publications</h2>
+        <div class="publications-list">
+          <div class="publication-item">
+            <h3>Publication Title 1</h3>
+            <p class="authors">Authors (Year)</p>
+            <p class="journal">Journal Name, Volume(Issue), Pages</p>
+            <a href="#" class="doi">DOI: 10.xxxx/xxxxx</a>
+          </div>
+          <!-- Add more publications as needed -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Shrey Tiwari. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
