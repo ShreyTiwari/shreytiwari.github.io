@@ -1,17 +1,295 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
-  <header id="header" class="d-flex align-items-center">
-    <div class="container d-flex flex-column align-items-center">
-    </div>
-  </header>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic Portfolio</title>
+  <link rel="icon" type="image/jpeg" href="favicon.jpg">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
-<body>  
-  <script>
-    window.location.href = "https://shreytiwari.com";
-  </script>
+<body>
+  <div class="dev-notice">
+    Site is currently being developed... please visit <a href="https://shreytiwari.com" target="_blank">shreytiwari.com</a> for the timebeing!
+  </div>
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <header>
+    <nav>
+      <div class="nav-container">
+        <ul class="nav-links">
+          <li><a href="#news">News</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#awards">Awards</a></li>
+          <li><a href="#mentoring">Mentoring</a></li>
+          <li><a href="#service">Service</a></li>
+          <li><a href="files/cv.pdf" target="_blank" rel="noopener">CV</a></li>
+        </ul>
+        <div class="social-links-header">
+          <a href="mailto:shrey@cmu.edu" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://x.com/shrey_twr" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://github.com/ShreyTiwari" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://scholar.google.com/citations?user=0KnT458AAAAJ" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero">
+      <div class="container">
+        <h1>Shrey Tiwari</h1>
+        <p>PhD Student</p>
+        <p>Carnegie Mellon University</p>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <h2>About Me</h2>
+        <div class="about-content">
+          <div class="profile-image">
+            <img src="images/profile.jpg" alt="Shrey Tiwari - PhD Student at Carnegie Mellon University">
+          </div>
+          <div class="bio">
+            <p>Hey!</p>
+            <p>I'm a software engineering PhD student in the Software and Societal Systems Department at Carnegie Mellon University. I completed my undergraduate degree in Computer Science and Engineering from PES University in 2020.</p>
+            <p>My research interests lie in the domain of <strong>Software Reliability</strong> and <strong>Cloud Computing</strong>. I have interned at Microsoft Research India, where I was advised by Dr. Akash Lal as part of the Cloud Reliability team. Prior to that, I was a software engineer at Citrix Systems, working with the VPN Gateway Solutions team.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="news">
+      <div class="container">
+        <h2>News &amp; Updates</h2>
+    
+        <div class="timeline">
+          <div class="timeline-line"></div>
+    
+          <!-- 2025 ------------------------------------------------------------>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">June 2025</div>
+              <!-- <h3>Summer Internship at Uber</h3> -->
+              <h4>Excited to kick off a summer internship with Uber!</h4>
+            </div>
+          </div>
+    
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">April 2025</div>
+              <!-- <h3>MSR 2025 – Distinguished Paper Award</h3> -->
+              <h4>Delighted to receive the ACM SIGSOFT Distinguished Paper Award at MSR 2025</h4>
+            </div>
+          </div>
+    
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">January 2025</div>
+              <!-- <h3>Paper Accepted to MSR 2025</h3> -->
+              <h4>Our latest paper has been accepted to MSR 2025!</h4>
+            </div>
+          </div>
+    
+          <!-- 2024 ------------------------------------------------------------>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">October 2024</div>
+              <!-- <h3>Student Volunteer – SPLASH 2024</h3> -->
+              <h4>Serving as a Student Volunteer at SPLASH 2024. Come say hi if you're attending!</h4>
+            </div>
+          </div>
+    
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">May 2024</div>
+              <!-- <h3>Mentoring REU Students</h3> -->
+              <h4>Mentoring three outstanding REU students throughout Summer '24.</h4>
+            </div>
+          </div>
+    
+          <!-- 2023 ------------------------------------------------------------>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">August 2023</div>
+              <!-- <h3>OOPSLA 2023 Paper &amp; Ph.D. Kick-off</h3> -->
+              <h4>I began my Ph.D. journey at Carnegie Mellon University</h4>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">July 2023</div>
+              <!-- <h3>OOPSLA 2023 Paper &amp; Ph.D. Kick-off</h3> -->
+              <h4>Our paper was accepted to OOPSLA 2023.</h4>
+            </div>
+          </div>
+    
+          <!-- 2021 ------------------------------------------------------------>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">June 2021</div>
+              <!-- <h3>Research Fellow at MSR</h3> -->
+              <h4>Joined Microsoft Research as a Research Fellow in the cloud reliability team lead by Dr. Akash Lal</h4>
+            </div>
+          </div>
+    
+          <!-- 2020 ------------------------------------------------------------>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">July 2020</div>
+              <!-- <h3>Graduated &amp; Joined Citrix</h3> -->
+              <h4>Graduated from PES University and joined Citrix as a Software Development Engineer</h4>
+            </div>
+          </div>
+    
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <div class="container">
+        <h2>Publications</h2>
+        <div class="publications-list">
+          <div class="publication-item">
+            <h3 class="paper-title">Title of the Paper</h3>
+            <p class="authors">Author 1, Author 2, Author 3</p>
+            <p class="conference">Conference Name, Year</p>
+            <div class="publication-links">
+              <a href="#" class="publication-link" title="Paper PDF"><i class="fas fa-file-pdf"></i> PDF</a>
+              <a href="#" class="publication-link" title="Video"><i class="fas fa-video"></i> Video</a>
+              <a href="#" class="publication-link" title="Code"><i class="fab fa-github"></i> Code</a>
+              <a href="#" class="publication-link" title="DOI"><i class="fas fa-link"></i> DOI</a>
+            </div>
+          </div>
+          <!-- Add more publications as needed -->
+        </div>
+      </div>
+    </section>
+
+    <section id="awards">
+      <div class="container">
+        <h2>Awards & Recognition</h2>
+        <div class="awards-list">
+          <div class="award-item">
+            <div class="award-date">2024</div>
+            <div class="award-content">
+              <h3>Award Title</h3>
+              <p class="award-organization">Organization Name</p>
+              <p class="award-description">Description of the award and its significance.</p>
+            </div>
+          </div>
+          <div class="award-item">
+            <div class="award-date">2023</div>
+            <div class="award-content">
+              <h3>Fellowship Award</h3>
+              <p class="award-organization">University Name</p>
+              <p class="award-description">Description of the fellowship and its impact.</p>
+            </div>
+          </div>
+          <div class="award-item">
+            <div class="award-date">2022</div>
+            <div class="award-content">
+              <h3>Research Grant</h3>
+              <p class="award-organization">Funding Organization</p>
+              <p class="award-description">Details about the research grant and its scope.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="mentoring">
+      <div class="container">
+        <h2>Mentoring</h2>
+        <div class="mentoring-list">
+          <div class="mentoring-item">
+            <div class="mentoring-date">2023 - Present</div>
+            <div class="mentoring-content">
+              <h3>Research Mentor</h3>
+              <p class="mentoring-role">Undergraduate Research Assistant</p>
+              <p class="mentoring-description">Mentoring undergraduate students in research projects related to software reliability and cloud computing.</p>
+            </div>
+          </div>
+          <div class="mentoring-item">
+            <div class="mentoring-date">2022 - 2023</div>
+            <div class="mentoring-content">
+              <h3>Teaching Assistant</h3>
+              <p class="mentoring-role">Software Engineering Course</p>
+              <p class="mentoring-description">Led weekly discussion sections and mentored students in software development projects.</p>
+            </div>
+          </div>
+          <div class="mentoring-item">
+            <div class="mentoring-date">2021 - 2022</div>
+            <div class="mentoring-content">
+              <h3>Graduate Student Mentor</h3>
+              <p class="mentoring-role">Department Peer Mentoring Program</p>
+              <p class="mentoring-description">Mentored incoming graduate students in their transition to the program and research work.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="service">
+      <div class="container">
+        <h2>Service</h2>
+        <div class="service-list">
+          <div class="service-item">
+            <div class="service-date">2023 - Present</div>
+            <div class="service-content">
+              <h3>Program Committee Member</h3>
+              <p class="service-role">Conference Name</p>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="service-date">2023</div>
+            <div class="service-content">
+              <h3>Workshop Organizer</h3>
+              <p class="service-role">Workshop Name</p>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="service-date">2022 - Present</div>
+            <div class="service-content">
+              <h3>Department Representative</h3>
+              <p class="service-role">Graduate Student Association</p>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="service-date">2022</div>
+            <div class="service-content">
+              <h3>Student Volunteer</h3>
+              <p class="service-role">Conference Name</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Shrey Tiwari</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
