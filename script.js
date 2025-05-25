@@ -1,11 +1,14 @@
 // Smooth scrolling for navigation links
 document.querySelectorAll('nav .nav-links a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const section = document.querySelector(this.getAttribute('href'));
-        section.scrollIntoView({
-            behavior: 'smooth'
-        });
+        // Only prevent default for internal links (those starting with #)
+        if (this.getAttribute('href').startsWith('#')) {
+            e.preventDefault();
+            const section = document.querySelector(this.getAttribute('href'));
+            section.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
     });
 });
 
@@ -86,4 +89,11 @@ function updateThemeIcon(theme) {
     themeIcon.className = '';
     // Add the appropriate icon class
     themeIcon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
-} 
+}
+
+// Set timeline line height
+window.addEventListener('DOMContentLoaded', () => {
+    const timeline = document.querySelector('.timeline');
+    const line = document.querySelector('.timeline-line');
+    line.style.height = timeline.scrollHeight + 'px';
+}); 
