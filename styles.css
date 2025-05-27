@@ -61,14 +61,6 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-color);
 }
 
-#hero h2 {
-    font-size: 1.8rem;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-    color: var(--secondary-text);
-    margin-bottom: 0.5rem;
-}
-
 section h2 {
     font-size: 2.5rem;
     font-weight: 600;
@@ -301,7 +293,7 @@ header {
 
 /* Publications Section */
 .publications-list {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0;
 }
 
@@ -697,7 +689,7 @@ footer {
 
 .mentoring-content {
     flex: 1;
-    max-width: 800px;
+    width: 100%;
 }
 
 .mentoring-content h3 {
