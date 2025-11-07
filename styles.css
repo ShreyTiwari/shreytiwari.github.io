@@ -455,7 +455,7 @@ footer {
     height: 400px;
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: var(--hover-color) var(--card-border);
+    scrollbar-color: var(--link-color) var(--card-border);
     padding-right: 20px;
 }
 
@@ -481,12 +481,12 @@ footer {
 }
 
 .timeline::-webkit-scrollbar-thumb {
-    background-color: var(--hover-color);
+    background-color: var(--link-color);
     border-radius: 3px;
 }
 
 .timeline:hover {
-    scrollbar-color: var(--hover-color) var(--card-border);
+    scrollbar-color: var(--link-color) var(--card-border);
 }
 
 .timeline-item {
