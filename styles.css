@@ -19,6 +19,7 @@
     --card-border: #e9ecef;
     --link-color: #1565c0;
     --secondary-text: #666;
+    --scrollbar-color: #1565c0;
 }
 
 :root[data-theme="dark"] {
@@ -34,6 +35,7 @@
     --card-border: #2d2d2d;
     --link-color: #42a5f5;
     --secondary-text: #a0a0a0;
+    --scrollbar-color: #1565c0;
 }
 
 /* Global link styles */
@@ -455,7 +457,7 @@ footer {
     height: 400px;
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: var(--link-color) var(--card-border);
+    scrollbar-color: var(--scrollbar-color) var(--card-border);
     padding-right: 20px;
 }
 
@@ -481,12 +483,12 @@ footer {
 }
 
 .timeline::-webkit-scrollbar-thumb {
-    background-color: var(--link-color);
+    background-color: var(--scrollbar-color);
     border-radius: 3px;
 }
 
 .timeline:hover {
-    scrollbar-color: var(--link-color) var(--card-border);
+    scrollbar-color: var(--scrollbar-color) var(--card-border);
 }
 
 .timeline-item {
