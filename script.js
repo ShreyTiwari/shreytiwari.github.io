@@ -37,14 +37,7 @@ if (hamburger) {
         // Toggle Nav
         navLinks.classList.toggle('nav-active');
 
-        // Animate Links
-        navLinksItems.forEach((link, index) => {
-            if (link.style.animation) {
-                link.style.animation = '';
-            } else {
-                link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
-            }
-        });
+
 
         // Burger Animation (optional, can add class for X shape)
         hamburger.classList.toggle('toggle');
@@ -56,9 +49,7 @@ navLinksItems.forEach(link => {
     link.addEventListener('click', () => {
         if (navLinks.classList.contains('nav-active')) {
             navLinks.classList.remove('nav-active');
-            navLinksItems.forEach(link => {
-                link.style.animation = '';
-            });
+
             hamburger.classList.remove('toggle');
         }
     });
@@ -70,9 +61,7 @@ document.addEventListener('click', (e) => {
         !navLinks.contains(e.target) &&
         !hamburger.contains(e.target)) {
         navLinks.classList.remove('nav-active');
-        navLinksItems.forEach(link => {
-            link.style.animation = '';
-        });
+
         hamburger.classList.remove('toggle');
     }
 });
