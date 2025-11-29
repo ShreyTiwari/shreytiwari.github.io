@@ -11,7 +11,7 @@
     --text-color: #333;
     --header-bg: #fff;
     --card-bg: #fff;
-    --shadow-color: rgba(0,0,0,0.1);
+    --shadow-color: rgba(0, 0, 0, 0.1);
     --hover-color: #42a5f5;
     --footer-bg: #2c3e50;
     --footer-text: #fff;
@@ -27,7 +27,7 @@
     --text-color: #e0e0e0;
     --header-bg: #1e1e1e;
     --card-bg: #1e1e1e;
-    --shadow-color: rgba(0,0,0,0.4);
+    --shadow-color: rgba(0, 0, 0, 0.4);
     --hover-color: #90caf9;
     --footer-bg: #1e1e1e;
     --footer-text: #e0e0e0;
@@ -60,7 +60,12 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: "Avenir", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-weight: 600;
     letter-spacing: -0.02em;
@@ -193,6 +198,19 @@ header {
     display: flex;
     align-items: center;
     gap: 1.5rem;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    z-index: 1002;
+}
+
+.hamburger-menu:hover {
+    color: var(--hover-color);
 }
 
 /* Theme Toggle Button */
@@ -382,19 +400,19 @@ header {
     .publication-item {
         padding: 10px 0;
     }
-    
+
     .publication-item .paper-title {
         font-size: 1.1rem;
     }
-    
+
     .publication-item .authors {
         font-size: 0.95rem;
     }
-    
+
     .publication-links {
         gap: 10px;
     }
-    
+
     .publication-link {
         font-size: 0.85rem;
     }
@@ -581,24 +599,82 @@ footer {
     }
 
     .nav-container {
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-between;
         padding: 1rem;
+        position: relative;
+    }
+
+    /* Mobile Navigation */
+    .hamburger-menu {
+        display: block;
+        order: 1;
+        /* Ensure hamburger is first (left) */
+    }
+
+    .social-links-header {
+        display: flex;
+        /* Show social links */
+        margin-top: 0;
+        order: 2;
+        /* Ensure social links are second (right) */
     }
 
     .nav-links {
-        flex-direction: row;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
+        position: absolute;
+        top: 100%;
+        /* Below header */
+        left: 0;
+        width: 100%;
+        height: auto;
+        /* Fit content */
+        background-color: var(--header-bg);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 1rem 0;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 6px var(--shadow-color);
+        z-index: 1001;
+        margin-bottom: 0;
+
+        /* Hidden state */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        pointer-events: none;
+        right: auto;
+        /* Reset right property from previous implementation */
+    }
+
+    .nav-links.nav-active {
+        /* Active state */
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: all;
+    }
+
+    .nav-links li {
+        margin: 0.5rem 0;
+        /* Reduced spacing */
+        opacity: 1;
+        /* Reset opacity from previous animation */
     }
 
     .nav-links li a {
         font-size: 0.9rem;
     }
 
-    .social-links-header {
-        margin-top: 1rem;
+    .nav-links.nav-active li {
+        animation: none;
+        /* Remove previous animation */
+    }
+
+    /* We are keeping them visible in the header now as requested */
+
+    @keyframes navLinkFade {
+        /* Not used in new design */
     }
 
     #hero {
@@ -673,19 +749,19 @@ footer {
         gap: 5px;
         padding: 10px 0;
     }
-    
+
     .award-date {
         font-size: 0.9rem;
     }
-    
+
     .award-content h3 {
         font-size: 1rem;
     }
-    
+
     .award-organization {
         font-size: 0.85rem;
     }
-    
+
     .award-description {
         font-size: 0.85rem;
     }
@@ -745,20 +821,20 @@ footer {
         gap: 5px;
         padding: 10px 0;
     }
-    
+
     .mentoring-date {
         font-size: 0.9rem;
         min-width: auto;
     }
-    
+
     .mentoring-content h3 {
         font-size: 1rem;
     }
-    
+
     .mentoring-role {
         font-size: 0.85rem;
     }
-    
+
     .mentoring-description {
         font-size: 0.85rem;
     }
@@ -818,20 +894,20 @@ footer {
         gap: 5px;
         padding: 10px 0;
     }
-    
+
     .service-date {
         font-size: 0.9rem;
         min-width: auto;
     }
-    
+
     .service-content h3 {
         font-size: 1rem;
     }
-    
+
     .service-role {
         font-size: 0.85rem;
     }
-    
+
     .service-description {
         font-size: 0.85rem;
     }
@@ -853,6 +929,7 @@ footer {
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(calc(-240px * 7 - 5px * 6));
     }
@@ -877,24 +954,25 @@ footer {
     .affiliates-grid {
         padding: 10px 15px;
     }
-    
+
     .affiliate-item {
         width: 150px;
         padding: 8px;
     }
-    
+
     .affiliate-logo {
         height: 100px;
         border-radius: 8px;
         padding: 8px;
     }
-    
+
     @keyframes scroll {
         0% {
             transform: translateX(0);
         }
+
         100% {
             transform: translateX(calc(-166px * 7 - 5px * 6));
         }
     }
-} 
+}
