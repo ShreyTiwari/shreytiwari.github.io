@@ -825,7 +825,7 @@ footer {
 }
 
 .service-role-title {
-    color: var(--link-color);
+    color: var(--text-color);
     font-size: 1rem;
     font-weight: 600;
     margin: 0;
