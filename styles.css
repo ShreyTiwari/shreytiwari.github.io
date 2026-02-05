@@ -819,8 +819,8 @@ footer {
 .service-item {
     padding: 0.5rem 0;
     display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 40px;
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
     align-items: baseline;
 }
 
