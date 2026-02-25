@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-55520173VP"></script>
   <script>
@@ -34,6 +34,7 @@
         <ul class="nav-links">
           <li><a href="#news">News</a></li>
           <li><a href="#publications">Publications</a></li>
+          <li><a href="#projects">Projects</a></li>
           <li><a href="#awards">Awards</a></li>
           <li><a href="#mentoring">Mentoring</a></li>
           <li><a href="#service">Service</a></li>
@@ -96,7 +97,7 @@
         <h2>News &amp; Updates</h2>
 
         <div class="timeline">
-          <div class="timeline-line"></div>
+
 
           <!-- 2025 ------------------------------------------------------------>
           <div class="timeline-item">
@@ -383,6 +384,51 @@
       </div>
     </section>
 
+    <section id="projects">
+      <div class="container">
+        <h2>Selected Projects</h2>
+        <div class="projects-list">
+          <div class="project-item">
+            <h3 class="project-title">NilAway: An Intelligent Nil Panic Detection Tool for Go</h3>
+            <p class="project-company">Uber Technologies, Inc.</p>
+            <p class="project-description">Implemented an agentic-AI-driven post-processing phase for NilAway that
+              improves precision by reasoning over reported alerts, automatically synthesizing unit tests to validate
+              nil panic bugs, and prioritizing findings with reproducible failures.</p>
+            <div class="skill-tags">
+              <span class="skill-tag">AI Agents</span>
+              <span class="skill-tag">Unit Test Generation</span>
+              <span class="skill-tag">Static Analysis</span>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <h3 class="project-title">uReview: AI-Powered Automated Code Reviews</h3>
+            <p class="project-company">Uber Technologies, Inc.</p>
+            <p class="project-description">Improved uReview's code reviews by enhancing the review
+              generation pipeline to increase the precision and recall of generated reviews and surface more actionable
+              feedback for developers.</p>
+            <div class="skill-tags">
+              <span class="skill-tag">AI Agents</span>
+              <span class="skill-tag">Code Review</span>
+              <span class="skill-tag">Bug Finding</span>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <h3 class="project-title">FixIt: A Precise And Scalable Dynamic Resource-Leak Detection Tool</h3>
+            <p class="project-company">Microsoft Research</p>
+            <p class="project-description">Developed a novel and scalable lightweight instrumentation-based tool for
+              detecting resource leaks in managed programming languages like C# and Java, achieving approximately 79%
+              accuracy by leveraging unit test suites.</p>
+            <div class="skill-tags">
+              <span class="skill-tag">Dynamic Analysis</span>
+              <span class="skill-tag">Cloud Computing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="awards">
       <div class="container">
         <h2>Awards & Recognition</h2>
@@ -469,7 +515,6 @@
               contributing to CMU's recognition as having the best REU mentors in the United States.</p>
           </div>
         </div>
-      </div>
       </div>
     </section>
 

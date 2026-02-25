@@ -34,13 +34,7 @@ const navLinksItems = document.querySelectorAll('.nav-links li');
 
 if (hamburger) {
     hamburger.addEventListener('click', () => {
-        // Toggle Nav
         navLinks.classList.toggle('nav-active');
-
-
-
-        // Burger Animation (optional, can add class for X shape)
-        hamburger.classList.toggle('toggle');
     });
 }
 
@@ -49,8 +43,6 @@ navLinksItems.forEach(link => {
     link.addEventListener('click', () => {
         if (navLinks.classList.contains('nav-active')) {
             navLinks.classList.remove('nav-active');
-
-            hamburger.classList.remove('toggle');
         }
     });
 });
@@ -61,7 +53,5 @@ document.addEventListener('click', (e) => {
         !navLinks.contains(e.target) &&
         !hamburger.contains(e.target)) {
         navLinks.classList.remove('nav-active');
-
-        hamburger.classList.remove('toggle');
     }
 });

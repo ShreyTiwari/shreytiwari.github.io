@@ -73,22 +73,6 @@ h6 {
     letter-spacing: -0.02em;
 }
 
-#hero h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    margin-bottom: 1rem;
-    color: var(--text-color);
-}
-
-section h2 {
-    font-size: 2.5rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin-bottom: 2rem;
-    text-align: left;
-}
-
 .research-item h3 {
     font-size: 1.5rem;
     font-weight: 600;
@@ -101,11 +85,6 @@ section h2 {
     font-weight: 600;
     letter-spacing: -0.01em;
     margin-bottom: 0.5rem;
-}
-
-.nav-links li a {
-    font-weight: 500;
-    letter-spacing: 0.02em;
 }
 
 /* Container and Section Alignment */
@@ -195,8 +174,6 @@ header {
     color: var(--hover-color);
     transform: translateY(-2px) scale(1.1);
 }
-
-
 
 /* Hamburger Menu */
 .hamburger-menu {
@@ -463,8 +440,52 @@ header {
     }
 }
 
-/* Contact Section */
+/* Selected Projects Section */
+.projects-list {
+    max-width: 1200px;
+    margin: 0;
+}
 
+.project-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.project-item:last-child {
+    border-bottom: none;
+}
+
+.project-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
+    color: var(--text-color);
+}
+
+.project-company {
+    color: var(--secondary-text);
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
+
+.project-description {
+    margin: 8px 0 6px 0;
+    padding: 0;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .project-title {
+        font-size: 1.1rem;
+    }
+
+    .project-description {
+        font-size: 0.9rem;
+    }
+}
 
 /* Footer */
 footer {
@@ -494,9 +515,6 @@ footer {
     padding-right: 20px;
 }
 
-.timeline-line {
-    display: none;
-}
 
 /* Custom scrollbar for Webkit browsers */
 .timeline::-webkit-scrollbar {
@@ -665,7 +683,6 @@ footer {
         transform: translateY(-10px);
         pointer-events: none;
         right: auto;
-        /* Reset right property from previous implementation */
     }
 
     .nav-links.nav-active {
@@ -678,23 +695,12 @@ footer {
 
     .nav-links li {
         margin: 0.5rem 0;
-        /* Reduced spacing */
         opacity: 1;
-        /* Reset opacity from previous animation */
     }
 
     .nav-links li a {
         font-size: 0.9rem;
     }
-
-    .nav-links.nav-active li {
-        animation: none;
-        /* Remove previous animation */
-    }
-
-    /* We are keeping them visible in the header now as requested */
-
-
 
     #hero {
         padding: 120px 0 60px;
@@ -703,8 +709,6 @@ footer {
     #hero h1 {
         font-size: 2rem;
     }
-
-
 
     .theme-toggle {
         margin-bottom: 1rem;
