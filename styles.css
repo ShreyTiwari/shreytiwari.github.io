@@ -925,7 +925,7 @@ footer {
     }
 
     100% {
-        transform: translateX(calc(-240px * 7 - 5px * 6));
+        transform: translateX(calc(-240px * 8 - 5px * 7));
     }
 }
 
@@ -966,7 +966,7 @@ footer {
         }
 
         100% {
-            transform: translateX(calc(-166px * 7 - 5px * 6));
+            transform: translateX(calc(-166px * 8 - 5px * 7));
         }
     }
 }
