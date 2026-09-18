@@ -293,6 +293,12 @@ header {
     transition: transform 0.3s ease;
 }
 
+/* The random-photo <img> starts without a src; with JS off it never gets one,
+   so hide it and let the <noscript> fallback show instead of a broken image. */
+.profile-image img:not([src]) {
+    display: none;
+}
+
 .profile-image:hover img {
     transform: scale(1.05);
 }

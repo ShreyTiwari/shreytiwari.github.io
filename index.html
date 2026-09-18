@@ -64,7 +64,26 @@
         <h2>About Me</h2>
         <div class="about-content">
           <div class="profile-image">
-            <img src="images/profile.jpg" alt="Shrey Tiwari - PhD Student at Carnegie Mellon University">
+            <img id="profile-photo" alt="Shrey Tiwari - PhD Student at Carnegie Mellon University">
+            <!-- Picks one photo at random per page load. Inline and right after the <img> so the
+                 src is set before first paint - doing this from script.js would swap the image
+                 after the page renders, and would fetch two photos instead of one. -->
+            <script>
+              (function () {
+                var photos = [
+                  'images/profile-headshot.jpg',
+                  'images/profile-skyline.jpg',
+                  'images/profile-niagara.jpg',
+                  'images/profile-times-square.jpg',
+                  'images/profile-mural.jpg'
+                ];
+                document.getElementById('profile-photo').src = photos[Math.floor(Math.random() * photos.length)];
+              })();
+            </script>
+            <noscript>
+              <img src="images/profile-headshot.jpg"
+                alt="Shrey Tiwari - PhD Student at Carnegie Mellon University">
+            </noscript>
           </div>
           <div class="bio">
             <p>Hey! I'm a PhD student in the <a href="https://s3d.cmu.edu/" target="_blank" rel="noopener">Software and
