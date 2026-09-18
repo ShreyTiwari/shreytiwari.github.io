@@ -21,6 +21,15 @@
     --secondary-text: #666;
     --scrollbar-color: #1565c0;
     --tag-color: #6a3de8;
+
+    /* Added: link hover that actually passes contrast on white (the old --hover-color
+       #42a5f5 is a 2.1:1 fill and is kept for icons//accents, not body links). */
+    --link-hover: #0d47a1;
+    /* Added: plate behind affiliate logos - transparent here, white in dark mode where the
+       white-background logo files would otherwise glare and the Uber mark would vanish. */
+    --logo-plate: transparent;
+    /* Added: the dot/rail accent, themed so it does not disappear on dark. */
+    --accent: #1565c0;
 }
 
 :root[data-theme="dark"] {
@@ -38,17 +47,51 @@
     --secondary-text: #a0a0a0;
     --scrollbar-color: #1565c0;
     --tag-color: #a070f0;
+
+    --link-hover: #90caf9;
+    --logo-plate: #ffffff;
+    --accent: #42a5f5;
+}
+
+/* Layout scale - one rhythm for the whole page, so every section lines up. */
+:root {
+    --header-h: 56px;
+    --maxw: 1040px;
+    --gutter: 24px;
+    /* Reading-measure cap. Not currently applied: content runs to the section edge by
+       request. Re-add `max-width: var(--measure)` to a text rule to cap its line length. */
+    --measure: 80ch;
+
+    --sp-1: 4px;
+    --sp-2: 8px;
+    --sp-3: 12px;
+    --sp-4: 16px;
+    --sp-5: 24px;
+    --sp-6: 32px;
+    --sp-7: 44px;
+}
+
+html {
+    scroll-behavior: smooth;
+    /* Anchor targets clear the fixed header instead of hiding under it. */
+    scroll-padding-top: calc(var(--header-h) + 16px);
 }
 
 /* Global link styles */
 a {
     color: var(--link-color);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
 }
 
 a:hover {
-    color: var(--hover-color);
+    color: var(--link-hover);
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 3px;
 }
 
 body {
@@ -68,53 +111,59 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Avenir", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: inherit;
     font-weight: 600;
+}
+
+h1 {
     letter-spacing: -0.02em;
-}
-
-.research-item h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    margin-bottom: 1rem;
-}
-
-.publication-item h3 {
-    font-size: 1.3rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    margin-bottom: 0.5rem;
 }
 
 /* Container and Section Alignment */
 .container {
-    max-width: 1200px;
+    max-width: var(--maxw);
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 var(--gutter);
 }
 
+/* One background for the whole page. The old alternating light/dark slabs banded the page
+   into stripes; hairline rules separate sections instead. */
 section {
-    padding: 50px 0;
-    background-color: var(--section-bg);
-}
-
-section:nth-child(even) {
+    padding: 0;
     background-color: var(--bg-color);
 }
 
+/* Vertical rhythm lives on the container, not the section, so the hairline rule between
+   two sections sits in the middle of the gap instead of adding a third helping of padding. */
+section .container {
+    padding-top: var(--sp-6);
+    padding-bottom: var(--sp-6);
+}
+
+section+section .container {
+    border-top: 1px solid var(--card-border);
+}
+
+section[id] {
+    scroll-margin-top: calc(var(--header-h) + 16px);
+}
+
+/* Section headings sit above their contents in the hierarchy: larger and darker than any
+   item title inside the section (paper titles and project titles are 1.04rem). The original
+   2.5rem display line was the opposite problem - ~90px of chrome per section. */
 section h2 {
-    font-size: 2.5rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin-bottom: 2rem;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--text-color);
+    margin-bottom: var(--sp-5);
     text-align: left;
 }
 
 /* Header and Navigation */
 header {
     background-color: var(--header-bg);
-    box-shadow: 0 2px 5px var(--shadow-color);
+    border-bottom: 1px solid var(--card-border);
     position: fixed;
     width: 100%;
     top: 0;
@@ -125,17 +174,20 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem;
-    max-width: 1200px;
+    gap: var(--sp-4);
+    min-height: var(--header-h);
+    /* Matches .container so the nav edge lines up with every section's content edge. */
+    max-width: var(--maxw);
     margin: 0 auto;
+    padding: 0 var(--gutter);
 }
 
 .nav-links {
     display: flex;
     list-style: none;
-    padding: 1rem 0;
+    padding: 0;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 2px;
 }
 
 .nav-links li {
@@ -143,146 +195,116 @@ header {
 }
 
 .nav-links li a {
+    display: block;
     text-decoration: none;
-    color: var(--text-color);
-    transition: all 0.3s ease;
-    font-size: 0.95rem;
+    color: var(--secondary-text);
+    transition: color 0.2s ease, background-color 0.2s ease;
+    font-size: 0.88rem;
     white-space: nowrap;
-    padding: 0.5rem 0.8rem;
-    border-radius: 6px;
+    padding: 0.35rem 0.6rem;
+    border-radius: 5px;
 }
 
 .nav-links li a:hover {
-    color: var(--hover-color);
+    color: var(--text-color);
     background-color: var(--section-bg);
-    transform: translateY(-2px);
 }
 
 .social-links-header {
     display: flex;
-    gap: 1.5rem;
+    gap: var(--sp-4);
     align-items: center;
 }
 
 .social-links-header a {
-    color: var(--text-color);
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
+    color: var(--secondary-text);
+    font-size: 1.05rem;
+    transition: color 0.2s ease;
 }
 
 .social-links-header a:hover {
-    color: var(--hover-color);
-    transform: translateY(-2px) scale(1.1);
+    color: var(--accent);
 }
 
 /* Hamburger Menu */
 .hamburger-menu {
     display: none;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: var(--text-color);
+    background: none;
+    border: none;
+    padding: 4px;
     z-index: 1002;
 }
 
 .hamburger-menu:hover {
-    color: var(--hover-color);
+    color: var(--accent);
 }
 
 /* Theme Toggle Button */
 .theme-toggle {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 24px;
+    right: 24px;
     z-index: 1001;
     background: var(--card-bg);
-    border: 2px solid var(--card-border);
-    color: var(--text-color);
+    border: 1px solid var(--card-border);
+    color: var(--secondary-text);
     cursor: pointer;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 15px var(--shadow-color);
+    font-size: 1rem;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    box-shadow: 0 2px 8px var(--shadow-color);
 }
 
 .theme-toggle:hover {
-    transform: scale(1.1);
-    background-color: var(--hover-color);
-    color: var(--bg-color);
-    border-color: var(--hover-color);
-    box-shadow: 0 6px 20px var(--shadow-color);
+    color: var(--accent);
+    border-color: var(--accent);
 }
 
-.theme-toggle:active {
-    transform: scale(0.95);
+/* ---------------------------------------------------------------- Intro
+   The old #hero was 250px of padding around three lines, followed by a separate About
+   section with its own heading. They are now one identity block: photo, name, role and
+   bio in a single dense unit at the top of the page. */
+.intro {
+    /* Clears the fixed header; the container supplies the rest of the rhythm. */
+    padding-top: var(--header-h);
+    background-color: var(--section-bg);
 }
 
-/* Theme toggle icon */
-.theme-toggle i {
-    transition: opacity 0.4s ease;
-    position: relative;
-}
-
-/* Update responsive design for theme toggle */
-@media (max-width: 768px) {
-    .theme-toggle {
-        bottom: 20px;
-        right: 20px;
-        width: 45px;
-        height: 45px;
-        font-size: 1.2rem;
-    }
-}
-
-/* Hero Section */
-#hero {
-    background: var(--section-bg);
-    padding: 150px 0 100px;
-    text-align: center;
-}
-
-#hero h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    margin-bottom: 1rem;
-    color: var(--text-color);
-}
-
-#hero h2 {
-    font-size: 1.8rem;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-    color: var(--secondary-text);
-    margin-bottom: 0.5rem;
-}
-
-/* About Section */
-.about-content {
+.intro-grid {
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 40px;
-    align-items: center;
+    grid-template-columns: 248px 1fr;
+    gap: var(--sp-7);
+    align-items: start;
+}
+
+/* Identity rail: photo, name and affiliation are one left-aligned unit, so every element
+   in the block shares an edge instead of floating next to the photo. */
+.intro-id {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+    border-right: 1px solid var(--card-border);
+    /* 248px track - 24px padding = a 224px content box, exactly the photo width, so the
+       name and affiliation sit on one line each and share the photo's left and right edges. */
+    padding-right: var(--sp-5);
+    height: 100%;
 }
 
 .profile-image {
-    width: 300px;
-    height: 300px;
-    margin: 0 auto;
+    width: 224px;
+    height: 224px;
     overflow: hidden;
     border-radius: 50%;
-    box-shadow: 0 8px 20px var(--shadow-color);
-    border: 4px solid var(--card-bg);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.profile-image:hover {
-    transform: scale(1.02);
-    box-shadow: 0 12px 25px var(--shadow-color);
+    box-shadow: 0 4px 14px var(--shadow-color);
+    border: 3px solid var(--card-bg);
 }
 
 .profile-image img {
@@ -290,7 +312,6 @@ header {
     height: 100%;
     object-fit: cover;
     object-position: center;
-    transition: transform 0.3s ease;
 }
 
 /* The random-photo <img> starts without a src; with JS off it never gets one,
@@ -299,239 +320,188 @@ header {
     display: none;
 }
 
-.profile-image:hover img {
-    transform: scale(1.05);
+.intro-id h1 {
+    font-size: 1.65rem;
+    /* The rail is sized so the name sits on one line; keep it that way. */
+    white-space: nowrap;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 4px;
+}
+
+.intro-role {
+    font-size: 0.95rem;
+    line-height: 1.45;
+    color: var(--secondary-text);
 }
 
 .bio p {
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
+    margin-bottom: var(--sp-3);
+    font-size: 0.97rem;
+    line-height: 1.62;
 }
 
-/* Publications Section */
-.publications-list {
-    max-width: 1200px;
-    margin: 0;
+.bio p:last-child {
+    margin-bottom: 0;
 }
 
-.publication-item {
-    padding: 12px 0;
+/* ---------------------------------------------------------------- Shared list rows
+   Publications, projects, awards, mentoring and news all used different padding and
+   line-heights. They now share one row rhythm. */
+.publication-item,
+.project-item,
+.award-item,
+.mentoring-item {
+    padding: var(--sp-4) 0;
     border-bottom: 1px solid var(--card-border);
 }
 
-.publication-item:last-child {
-    border-bottom: none;
+.publication-item:first-child,
+.project-item:first-child,
+.award-item:first-child,
+.mentoring-item:first-child {
+    padding-top: 0;
 }
 
+.publication-item:last-child,
+.project-item:last-child,
+.award-item:last-child,
+.mentoring-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* Publications */
 .publication-item .paper-title {
     color: var(--text-color);
-    font-size: 1.3rem;
+    font-size: 1.04rem;
     font-weight: 600;
-    margin-bottom: 6px;
+    line-height: 1.4;
+    margin-bottom: 3px;
 }
 
 .publication-item .authors {
     color: var(--secondary-text);
-    font-size: 1rem;
-    margin-bottom: 4px;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    margin-bottom: 2px;
 }
 
 .publication-item .conference {
     color: var(--secondary-text);
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     font-style: italic;
-    margin-bottom: 8px;
+    display: inline;
+}
+
+/* "Under Review" had no rule at all, so it rendered as full-size body text - the most
+   prominent thing in the entry. It is metadata; it now reads as metadata. */
+.publication-item .status {
+    display: inline;
+    font-size: 0.78rem;
+    font-style: normal;
+    color: var(--secondary-text);
+    border: 1px solid var(--card-border);
+    border-radius: 3px;
+    padding: 1px 6px;
+    margin-left: 6px;
+    white-space: nowrap;
+}
+
+.publication-item .status em {
+    font-style: normal;
 }
 
 .publication-item .award {
     color: var(--text-color);
-    font-size: 0.95rem;
-    margin-bottom: 8px;
+    font-size: 0.88rem;
+    margin-top: 3px;
 }
 
 .publication-links {
     display: flex;
-    gap: 12px;
+    gap: var(--sp-3);
     flex-wrap: wrap;
+    margin-top: var(--sp-2);
 }
 
 .publication-link {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
     color: var(--link-color);
-    text-decoration: none;
-    font-size: 0.9rem;
-    padding: 0.3rem 0.6rem;
-    border-radius: 4px;
-    transition: all 0.3s ease;
+    font-size: 0.83rem;
 }
 
 .publication-link:hover {
-    color: var(--hover-color);
-    background-color: var(--section-bg);
-    transform: translateY(-2px);
+    color: var(--link-hover);
 }
 
-.publication-link i {
-    font-size: 0.9rem;
-}
-
-/* Skill Tags */
+/* Skill Tags - flat tint rather than a gradient pill, but the violet is unchanged. */
 .skill-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 7px;
-    margin-top: 6px;
-    margin-bottom: 10px;
+    gap: 6px;
+    margin-top: var(--sp-2);
 }
 
 .skill-tag {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    font-size: 0.76rem;
+    font-size: 0.72rem;
     font-weight: 600;
-    padding: 4px 12px;
-    line-height: 1;
-    border-radius: 999px;
-    background: linear-gradient(135deg,
-            color-mix(in srgb, var(--tag-color) 10%, transparent),
-            color-mix(in srgb, var(--tag-color) 18%, transparent));
+    padding: 2px 8px;
+    line-height: 1.5;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--tag-color) 10%, transparent);
     color: var(--tag-color);
-    border: 1px solid color-mix(in srgb, var(--tag-color) 20%, transparent);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    letter-spacing: 0.02em;
-    text-transform: none;
+    border: 1px solid color-mix(in srgb, var(--tag-color) 22%, transparent);
     cursor: default;
 }
 
-.skill-tag:hover {
-    background: linear-gradient(135deg,
-            color-mix(in srgb, var(--tag-color) 18%, transparent),
-            color-mix(in srgb, var(--tag-color) 28%, transparent));
-    border-color: color-mix(in srgb, var(--tag-color) 40%, transparent);
-    box-shadow: 0 2px 8px color-mix(in srgb, var(--tag-color) 20%, transparent);
-    transform: translateY(-1px);
-}
-
-@media (max-width: 768px) {
-    .publication-item {
-        padding: 10px 0;
-    }
-
-    .publication-item .paper-title {
-        font-size: 1.1rem;
-    }
-
-    .publication-item .authors {
-        font-size: 0.95rem;
-    }
-
-    .publication-links {
-        gap: 10px;
-    }
-
-    .publication-link {
-        font-size: 0.85rem;
-    }
-
-    .skill-tags {
-        gap: 5px;
-    }
-
-    .skill-tag {
-        font-size: 0.72rem;
-        padding: 2px 8px;
-    }
-}
-
-/* Selected Projects Section */
-.projects-list {
-    max-width: 1200px;
-    margin: 0;
-}
-
-.project-item {
-    padding: 12px 0;
-    border-bottom: 1px solid var(--card-border);
-}
-
-.project-item:last-child {
-    border-bottom: none;
-}
-
+/* Projects */
 .project-title {
-    font-size: 1.3rem;
+    font-size: 1.04rem;
     font-weight: 600;
-    letter-spacing: -0.01em;
+    line-height: 1.4;
     margin-bottom: 2px;
     color: var(--text-color);
 }
 
 .project-company {
     color: var(--secondary-text);
-    font-size: 0.95rem;
-    margin-bottom: 4px;
+    font-size: 0.88rem;
+    margin-bottom: var(--sp-1);
 }
 
 .project-description {
-    margin: 8px 0 6px 0;
-    padding: 0;
     color: var(--text-color);
-    font-size: 0.95rem;
-    line-height: 1.5;
+    font-size: 0.92rem;
+    line-height: 1.55;
 }
 
-@media (max-width: 768px) {
-    .project-title {
-        font-size: 1.1rem;
-    }
-
-    .project-description {
-        font-size: 0.9rem;
-    }
-}
-
-/* Footer */
-footer {
-    background-color: var(--footer-bg);
-    color: var(--footer-text);
-    padding: 20px 0;
-    text-align: center;
-    border-top: 1px solid var(--card-border);
-}
-
-/* News Timeline Section */
-#news {
-    background-color: var(--section-bg);
-    padding: 60px 0;
-}
-
+/* ---------------------------------------------------------------- News timeline
+   Was a 400px fixed-height inner scroller, pulled 20px left of every other section, with
+   the date stacked above the headline. Now a full-flow two-column list on the page rhythm. */
 .timeline {
     position: relative;
-    max-width: 1200px;
     margin: 0;
-    padding: 10px 0;
-    margin-left: -20px;
-    height: 400px;
+    /* News is the one section long enough to warrant its own scroller. */
+    max-height: 520px;
     overflow-y: auto;
+    padding: 0 var(--sp-3) 0 0;
     scrollbar-width: thin;
     scrollbar-color: var(--scrollbar-color) var(--card-border);
-    padding-right: 20px;
+    overscroll-behavior: contain;
 }
 
-
-/* Custom scrollbar for Webkit browsers */
 .timeline::-webkit-scrollbar {
     width: 6px;
-    margin-left: 20px;
 }
 
 .timeline::-webkit-scrollbar-track {
     background: var(--card-border);
     border-radius: 3px;
-    margin-left: 20px;
 }
 
 .timeline::-webkit-scrollbar-thumb {
@@ -539,14 +509,9 @@ footer {
     border-radius: 3px;
 }
 
-.timeline:hover {
-    scrollbar-color: var(--scrollbar-color) var(--card-border);
-}
-
 .timeline-item {
-    padding: 12px 0;
+    padding: 7px 0;
     position: relative;
-    width: 100%;
     display: flex;
     align-items: flex-start;
 }
@@ -554,7 +519,7 @@ footer {
 .timeline-item::before {
     content: '';
     position: absolute;
-    left: 15px;
+    left: 3px;
     top: 0;
     bottom: 0;
     width: 1px;
@@ -562,367 +527,135 @@ footer {
     z-index: 0;
 }
 
+.timeline-item:first-child::before {
+    top: 12px;
+}
+
+.timeline-item:last-child::before {
+    bottom: auto;
+    height: 12px;
+}
+
 .timeline-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--scrollbar-color);
+    width: 7px;
+    height: 7px;
+    background: var(--accent);
     border-radius: 50%;
     position: absolute;
-    left: 15px;
-    margin-left: -4px;
-    top: 16px;
+    left: 0;
+    top: 12px;
     z-index: 1;
 }
 
 .timeline-content {
-    width: calc(100% - 35px);
-    margin-left: 35px;
-    padding: 0;
-    position: relative;
-    padding-right: 20px;
+    margin-left: var(--sp-5);
+    display: grid;
+    grid-template-columns: 108px 1fr;
+    gap: var(--sp-4);
+    align-items: baseline;
+    width: 100%;
 }
 
 .timeline-date {
     color: var(--secondary-text);
-    font-size: 0.85rem;
-    margin-bottom: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
 }
 
-.timeline-content h3 {
+.timeline-content h4 {
     color: var(--text-color);
-    margin-bottom: 6px;
-    font-size: 1.1rem;
+    font-size: 0.94rem;
     font-weight: 500;
+    line-height: 1.5;
+    /* No measure cap here: news blurbs are one or two lines, and letting them fill the
+       scroll region keeps the scrollbar visually attached to the text it scrolls. */
 }
 
-.timeline-content p {
-    color: var(--secondary-text);
-    font-size: 0.95rem;
-    line-height: 1.4;
-    margin: 0;
-}
-
-/* Responsive Timeline */
-@media (max-width: 768px) {
-    .timeline::before {
-        left: 20px;
-    }
-
-    .timeline-dot {
-        left: 20px;
-    }
-
-    .timeline-content {
-        width: calc(100% - 40px);
-        margin-left: 40px;
-    }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        width: 95%;
-        padding: 0 15px;
-    }
-
-    section {
-        padding: 60px 0;
-    }
-
-    section h2 {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-    }
-
-    .about-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .profile-image {
-        margin: 0 auto;
-    }
-
-    .nav-container {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 1rem;
-        position: relative;
-    }
-
-    /* Mobile Navigation */
-    .hamburger-menu {
-        display: block;
-        order: 1;
-        /* Ensure hamburger is first (left) */
-    }
-
-    .social-links-header {
-        display: flex;
-        /* Show social links */
-        margin-top: 0;
-        order: 2;
-        /* Ensure social links are second (right) */
-    }
-
-    .nav-links {
-        position: absolute;
-        top: 100%;
-        /* Below header */
-        left: 0;
-        width: 100%;
-        height: auto;
-        /* Fit content */
-        background-color: var(--header-bg);
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        padding: 1rem 0;
-        transition: all 0.3s ease-in-out;
-        box-shadow: 0 4px 6px var(--shadow-color);
-        z-index: 1001;
-        margin-bottom: 0;
-
-        /* Hidden state */
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-10px);
-        pointer-events: none;
-        right: auto;
-    }
-
-    .nav-links.nav-active {
-        /* Active state */
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-        pointer-events: all;
-    }
-
-    .nav-links li {
-        margin: 0.5rem 0;
-        opacity: 1;
-    }
-
-    .nav-links li a {
-        font-size: 0.9rem;
-    }
-
-    #hero {
-        padding: 120px 0 60px;
-    }
-
-    #hero h1 {
-        font-size: 2rem;
-    }
-
-    .theme-toggle {
-        margin-bottom: 1rem;
-    }
-}
-
-/* Awards Section */
-.awards-list {
-    max-width: 1200px;
-    margin: 0;
-}
-
-.award-item {
-    padding: 12px 0;
-    border-bottom: 1px solid var(--card-border);
-    display: flex;
-    gap: 20px;
-}
-
-.award-item:last-child {
-    border-bottom: none;
-}
-
-.award-date {
-    min-width: 50px;
-    color: var(--secondary-text);
-    font-weight: 600;
-    font-size: 0.95rem;
-}
-
-.award-content {
-    flex: 1;
-    max-width: 800px;
-}
-
-.award-content h3 {
-    color: var(--text-color);
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 2px;
-}
-
-.award-organization {
-    color: var(--secondary-text);
-    font-size: 0.9rem;
-    margin-bottom: 4px;
-}
-
-.award-description {
-    color: var(--text-color);
-    font-size: 0.9rem;
-    line-height: 1.4;
-}
-
-@media (max-width: 768px) {
-    .award-item {
-        flex-direction: column;
-        gap: 5px;
-        padding: 10px 0;
-    }
-
-    .award-date {
-        font-size: 0.9rem;
-    }
-
-    .award-content h3 {
-        font-size: 1rem;
-    }
-
-    .award-organization {
-        font-size: 0.85rem;
-    }
-
-    .award-description {
-        font-size: 0.85rem;
-    }
-}
-
-/* Mentoring Section */
-
-
+/* ---------------------------------------------------------------- Awards */
+.award-item,
 .mentoring-item {
-    padding: 12px 0;
-    border-bottom: 1px solid var(--card-border);
-    display: flex;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: 108px 1fr;
+    gap: var(--sp-5);
 }
 
-.mentoring-item:last-child {
-    border-bottom: none;
-}
-
+/* The award dates were padded with nine hardcoded &nbsp; to fake this column. */
+.award-date,
 .mentoring-date {
-    min-width: 120px;
     color: var(--secondary-text);
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.88rem;
 }
 
-.mentoring-content {
-    flex: 1;
-    width: 100%;
-}
-
+.award-content h3,
 .mentoring-content h3 {
     color: var(--text-color);
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 2px;
+    margin-bottom: 1px;
 }
 
+.award-organization,
 .mentoring-role {
     color: var(--secondary-text);
-    font-size: 0.9rem;
-    margin-bottom: 4px;
+    font-size: 0.86rem;
+    margin-bottom: 3px;
 }
 
+.award-description,
 .mentoring-description {
     color: var(--text-color);
     font-size: 0.9rem;
-    line-height: 1.4;
+    line-height: 1.55;
 }
 
-@media (max-width: 768px) {
-    .mentoring-item {
-        flex-direction: column;
-        gap: 5px;
-        padding: 10px 0;
-    }
-
-    .mentoring-date {
-        font-size: 0.9rem;
-        min-width: auto;
-    }
-
-    .mentoring-content h3 {
-        font-size: 1rem;
-    }
-
-    .mentoring-role {
-        font-size: 0.85rem;
-    }
-
-    .mentoring-description {
-        font-size: 0.85rem;
-    }
-}
-
-/* Service Section */
-#service h2 {
-    border-bottom: 1px solid var(--card-border);
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.service-list {
-    max-width: 1200px;
-    margin: 0;
-}
-
+/* ---------------------------------------------------------------- Service */
 .service-item {
-    padding: 0.5rem 0;
+    padding: 7px 0;
     display: grid;
     grid-template-columns: 200px 1fr;
-    gap: 20px;
+    gap: var(--sp-5);
     align-items: baseline;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.service-item:first-child {
+    padding-top: 0;
+}
+
+.service-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
 .service-role-title {
     color: var(--text-color);
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     margin: 0;
 }
 
 .service-details {
     color: var(--secondary-text);
-    font-size: 1rem;
+    font-size: 0.92rem;
     margin: 0;
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
-@media (max-width: 768px) {
-    .service-item {
-        grid-template-columns: 1fr;
-        gap: 0.25rem;
-        padding: 0.75rem 0;
-    }
-
-    .service-role-title {
-        font-size: 0.95rem;
-    }
-
-    .service-details {
-        font-size: 0.9rem;
-    }
+/* ---------------------------------------------------------------- Affiliates
+   8 unique logos, duplicated in the HTML for a seamless loop. The keyframe distance must
+   equal 8 x (item width + gap) or the strip jumps - the old formula used 240px for a 200px
+   item and counted 7 gaps instead of 8, so it was off by 315px every cycle. */
+#affiliates {
+    background-color: var(--section-bg);
 }
 
-/* Affiliates Section */
 .affiliates-grid {
     display: flex;
-    gap: 5px;
+    gap: 32px;
     align-items: center;
     overflow: hidden;
     position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 10px 20px;
 }
 
 @keyframes scroll {
@@ -931,39 +664,169 @@ footer {
     }
 
     100% {
-        transform: translateX(calc(-240px * 8 - 5px * 7));
+        transform: translateX(calc(-150px * 8 - 32px * 8));
     }
 }
 
 .affiliate-item {
     flex: 0 0 auto;
-    width: 200px;
-    padding: 10px;
-    background: transparent;
-    animation: scroll 30s linear infinite;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    animation: scroll 34s linear infinite;
 }
 
 .affiliate-logo {
-    width: 100%;
-    height: 120px;
+    /* width:auto so the box takes each logo's own aspect ratio - otherwise the dark-mode
+       plate below is a uniform rectangle with a small logo adrift in it. */
+    width: auto;
+    max-width: 100%;
+    height: 90px;
     object-fit: contain;
-    border-radius: 12px;
+    /* Several logo files are opaque white JPEGs and the Uber mark is black-on-transparent,
+       so on a dark page half the strip glared and one logo vanished. A plate normalises
+       both cases; in light mode the plate is transparent. */
+    background: var(--logo-plate);
+    border-radius: 8px;
+    padding: 8px;
 }
 
+/* Footer */
+footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    padding: var(--sp-4) 0;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+/* ---------------------------------------------------------------- Responsive
+   Single breakpoint. Note the old file gave mobile MORE section padding than desktop. */
 @media (max-width: 768px) {
+    :root {
+        --gutter: 18px;
+        --sp-7: 32px;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    .nav-container {
+        position: relative;
+    }
+
+    .hamburger-menu {
+        display: block;
+        order: 1;
+    }
+
+    .social-links-header {
+        order: 2;
+        gap: var(--sp-4);
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--header-bg);
+        flex-direction: column;
+        align-items: center;
+        padding: var(--sp-3) 0;
+        transition: all 0.25s ease-in-out;
+        box-shadow: 0 4px 6px var(--shadow-color);
+        border-bottom: 1px solid var(--card-border);
+        z-index: 1001;
+
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        pointer-events: none;
+    }
+
+    .nav-links.nav-active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: all;
+    }
+
+    .nav-links li {
+        margin: 2px 0;
+    }
+
+    /* Intro stacks; the photo centres but the prose stays left-aligned - centred
+       paragraphs were hard to read. */
+    section h2 {
+        font-size: 1.2rem;
+        margin-bottom: var(--sp-4);
+    }
+
+    .intro-grid {
+        grid-template-columns: 1fr;
+        gap: var(--sp-5);
+    }
+
+    .intro-id {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--sp-4);
+        border-right: none;
+        padding-right: 0;
+        padding-bottom: var(--sp-5);
+        border-bottom: 1px solid var(--card-border);
+    }
+
+    .profile-image {
+        width: 96px;
+        height: 96px;
+        flex: 0 0 auto;
+    }
+
+    .intro-id h1 {
+        font-size: 1.5rem;
+    }
+
+    .timeline {
+        max-height: 440px;
+    }
+
+    .timeline-content,
+    .award-item,
+    .mentoring-item,
+    .service-item {
+        grid-template-columns: 1fr;
+        gap: 2px;
+    }
+
+    .timeline-content {
+        margin-left: var(--sp-4);
+    }
+
+    .publication-item .paper-title,
+    .project-title {
+        font-size: 1rem;
+    }
+
+    .theme-toggle {
+        bottom: 16px;
+        right: 16px;
+        width: 38px;
+        height: 38px;
+    }
+
     .affiliates-grid {
-        padding: 10px 15px;
+        gap: 24px;
     }
 
     .affiliate-item {
-        width: 150px;
-        padding: 8px;
+        width: 112px;
     }
 
     .affiliate-logo {
-        height: 100px;
-        border-radius: 8px;
-        padding: 8px;
+        height: 68px;
     }
 
     @keyframes scroll {
@@ -972,7 +835,21 @@ footer {
         }
 
         100% {
-            transform: translateX(calc(-166px * 8 - 5px * 7));
+            transform: translateX(calc(-112px * 8 - 24px * 8));
         }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .affiliate-item {
+        animation: none;
+    }
+
+    * {
+        transition-duration: 0.01ms !important;
     }
 }

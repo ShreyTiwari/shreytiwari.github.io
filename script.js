@@ -32,18 +32,21 @@ const hamburger = document.querySelector('.hamburger-menu');
 const navLinks = document.querySelector('.nav-links');
 const navLinksItems = document.querySelectorAll('.nav-links li');
 
+function setNav(open) {
+    navLinks.classList.toggle('nav-active', open);
+    if (hamburger) hamburger.setAttribute('aria-expanded', String(open));
+}
+
 if (hamburger) {
     hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('nav-active');
+        setNav(!navLinks.classList.contains('nav-active'));
     });
 }
 
 // Close mobile menu when clicking a link
 navLinksItems.forEach(link => {
     link.addEventListener('click', () => {
-        if (navLinks.classList.contains('nav-active')) {
-            navLinks.classList.remove('nav-active');
-        }
+        if (navLinks.classList.contains('nav-active')) setNav(false);
     });
 });
 
@@ -52,6 +55,14 @@ document.addEventListener('click', (e) => {
     if (navLinks.classList.contains('nav-active') &&
         !navLinks.contains(e.target) &&
         !hamburger.contains(e.target)) {
-        navLinks.classList.remove('nav-active');
+        setNav(false);
+    }
+});
+
+// Escape closes the mobile menu and returns focus to the button.
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('nav-active')) {
+        setNav(false);
+        if (hamburger) hamburger.focus();
     }
 });

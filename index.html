@@ -5,7 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shrey Tiwari</title>
-  <link rel="icon" type="image/jpeg" href="images/favicon.png">
+  <meta name="description"
+    content="Shrey Tiwari is a PhD student in the Software and Societal Systems Department at Carnegie Mellon University, working on software reliability, program analysis, automated testing, and AI for code.">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <script>
+    // Inline and before the stylesheet on purpose: script.js loads at the end of <body>,
+    // so setting the theme there makes a dark-mode visitor see a white flash first.
+    try { document.documentElement.setAttribute("data-theme", localStorage.getItem("theme") || "light"); } catch (e) { }
+  </script>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
@@ -28,10 +35,11 @@
   <header>
     <nav>
       <div class="nav-container">
-        <div class="hamburger-menu">
-          <i class="fas fa-bars"></i>
-        </div>
-        <ul class="nav-links">
+        <button class="hamburger-menu" aria-label="Toggle navigation menu" aria-expanded="false"
+          aria-controls="nav-links">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+        <ul class="nav-links" id="nav-links">
           <li><a href="#news">News</a></li>
           <li><a href="#publications">Publications</a></li>
           <li><a href="#projects">Projects</a></li>
@@ -40,10 +48,10 @@
           <li><a href="#service">Service</a></li>
         </ul>
         <div class="social-links-header">
-          <a href="mailto:shrey@cmu.edu" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://x.com/shrey_twr" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a>
-          <a href="https://github.com/ShreyTiwari" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://scholar.google.com/citations?user=0KnT458AAAAJ" target="_blank" title="Google Scholar"><i
+          <a href="mailto:shrey@cmu.edu" target="_blank" rel="noopener" aria-label="Email" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://x.com/shrey_twr" target="_blank" rel="noopener" aria-label="X" title="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://github.com/ShreyTiwari" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://scholar.google.com/citations?user=0KnT458AAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar" title="Google Scholar"><i
               class="ai ai-google-scholar"></i></a>
         </div>
       </div>
@@ -51,60 +59,57 @@
   </header>
 
   <main>
-    <section id="hero">
+    <section id="about" class="intro">
       <div class="container">
-        <h1>Shrey Tiwari</h1>
-        <p>PhD Student</p>
-        <p>Carnegie Mellon University</p>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container">
-        <h2>About Me</h2>
-        <div class="about-content">
-          <div class="profile-image">
+        <div class="intro-grid">
+          <div class="intro-id">
+            <div class="profile-image">
             <img id="profile-photo" alt="Shrey Tiwari - PhD Student at Carnegie Mellon University">
             <!-- Picks one photo at random per page load. Inline and right after the <img> so the
-                 src is set before first paint - doing this from script.js would swap the image
-                 after the page renders, and would fetch two photos instead of one. -->
+            src is set before first paint - doing this from script.js would swap the image
+            after the page renders, and would fetch two photos instead of one. -->
             <script>
-              (function () {
-                var photos = [
-                  'images/profile-headshot.jpg',
-                  'images/profile-skyline.jpg',
-                  'images/profile-niagara.jpg',
-                  'images/profile-times-square.jpg',
-                  'images/profile-mural.jpg'
-                ];
-                document.getElementById('profile-photo').src = photos[Math.floor(Math.random() * photos.length)];
-              })();
+            (function () {
+            var photos = [
+            'images/profile-headshot.jpg',
+            'images/profile-skyline.jpg',
+            'images/profile-niagara.jpg',
+            'images/profile-times-square.jpg',
+            'images/profile-mural.jpg'
+            ];
+            document.getElementById('profile-photo').src = photos[Math.floor(Math.random() * photos.length)];
+            })();
             </script>
             <noscript>
-              <img src="images/profile-headshot.jpg"
-                alt="Shrey Tiwari - PhD Student at Carnegie Mellon University">
+            <img src="images/profile-headshot.jpg"
+            alt="Shrey Tiwari - PhD Student at Carnegie Mellon University">
             </noscript>
+            </div>
+            <div class="intro-name">
+              <h1>Shrey Tiwari</h1>
+              <p class="intro-role">PhD Student<br>Carnegie Mellon University</p>
+            </div>
           </div>
           <div class="bio">
             <p>Hey! I'm a PhD student in the <a href="https://s3d.cmu.edu/" target="_blank" rel="noopener">Software and
-                Societal Systems Department</a> at Carnegie Mellon University, advised by <a
-                href="https://rohan.padhye.org/" target="_blank" rel="noopener">Prof. Rohan Padhye</a> in the <a
-                href="https://pastalab.org/" target="_blank" rel="noopener">PASTA Lab</a>. My research interests span
-              Software Engineering, Programming Languages, and AI for Code.</p>
+                                Societal Systems Department</a> at Carnegie Mellon University, advised by <a
+                                href="https://rohan.padhye.org/" target="_blank" rel="noopener">Prof. Rohan Padhye</a> in the <a
+                                href="https://pastalab.org/" target="_blank" rel="noopener">PASTA Lab</a>. My research interests span
+                              Software Engineering, Programming Languages, and AI for Code.</p>
             <p>My research focuses on ensuring <strong>software reliability</strong> through a diverse set of
-              approaches, including
-              building precise <strong>static and dynamic analysis</strong> tools, developing <strong>automated
-                testing</strong> techniques, and more
-              recently, leveraging <strong>software agents</strong> to detect and prevent bugs at scale.</p>
+                              approaches, including
+                              building precise <strong>static and dynamic analysis</strong> tools, developing <strong>automated
+                                testing</strong> techniques, and more
+                              recently, leveraging <strong>software agents</strong> to detect and prevent bugs at scale.</p>
             <p>Previously, I was a Research Fellow at <a
-                href="https://www.microsoft.com/en-us/research/lab/microsoft-research-india/" target="_blank"
-                rel="noopener">Microsoft Research India</a> (Cloud Reliability team) developing program
-              analysis tools for ensuring software reliability in Azure, advised by <a
-                href="https://www.microsoft.com/en-us/research/people/akashl/" target="_blank" rel="noopener">Dr. Akash
-                Lal</a> and <a href="https://www.microsoft.com/en-us/research/people/sumann/" target="_blank"
-                rel="noopener">Dr. Suman Nath</a>, and a Software Engineer at <a href="https://www.citrix.com/"
-                target="_blank" rel="noopener">Citrix Systems</a> building cloud-based
-              distributed VPN solutions.</p>
+                                href="https://www.microsoft.com/en-us/research/lab/microsoft-research-india/" target="_blank"
+                                rel="noopener">Microsoft Research India</a> (Cloud Reliability team) developing program
+                              analysis tools for ensuring software reliability in Azure, advised by <a
+                                href="https://www.microsoft.com/en-us/research/people/akashl/" target="_blank" rel="noopener">Dr. Akash
+                                Lal</a> and <a href="https://www.microsoft.com/en-us/research/people/sumann/" target="_blank"
+                                rel="noopener">Dr. Suman Nath</a>, and a Software Engineer at <a href="https://www.citrix.com/"
+                                target="_blank" rel="noopener">Citrix Systems</a> building cloud-based
+                              distributed VPN solutions.</p>
           </div>
         </div>
       </div>
@@ -322,15 +327,15 @@
             <p class="conference">Mining Software Repositories (MSR) 2025</p>
             <p class="award">🏆 <strong>ACM SIGSOFT Distinguished Paper Award</strong></p>
             <div class="publication-links">
-              <a href="https://rohan.padhye.org/files/datetimebugs-msr25.pdf" class="publication-link"
+              <a href="https://rohan.padhye.org/files/datetimebugs-msr25.pdf" class="publication-link" target="_blank" rel="noopener"
                 title="Paper PDF"><i class="fas fa-file-pdf"></i> PDF</a>
-              <a href="https://github.com/cmu-pasta/date-time" class="publication-link" title="GitHub Repository"><i
+              <a href="https://github.com/cmu-pasta/date-time" class="publication-link" target="_blank" rel="noopener" title="GitHub Repository"><i
                   class="fab fa-github"></i> Code</a>
-              <a href="https://www.youtube.com/watch?v=xrWMALI2V28" class="publication-link"
+              <a href="https://www.youtube.com/watch?v=xrWMALI2V28" class="publication-link" target="_blank" rel="noopener"
                 title="Presentation Video"><i class="fas fa-video"></i> Video</a>
-              <a href="https://t.co/QJ3mJPSqn5" class="publication-link" title="Podcast on Spotify"><i
+              <a href="https://t.co/QJ3mJPSqn5" class="publication-link" target="_blank" rel="noopener" title="Podcast on Spotify"><i
                   class="fas fa-podcast"></i> Spotify</a>
-              <a href="https://t.co/uWRbmKGRqw" class="publication-link" title="Podcast on Apple Podcasts"><i
+              <a href="https://t.co/uWRbmKGRqw" class="publication-link" target="_blank" rel="noopener" title="Podcast on Apple Podcasts"><i
                   class="fas fa-podcast"></i> Apple Podcasts</a>
             </div>
             <div class="skill-tags">
@@ -347,15 +352,15 @@
             </p>
             <p class="conference">Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2025</p>
             <div class="publication-links">
-              <a href="https://dl.acm.org/doi/10.1145/3764119" class="publication-link" title="Paper PDF"><i
+              <a href="https://dl.acm.org/doi/10.1145/3764119" class="publication-link" target="_blank" rel="noopener" title="Paper PDF"><i
                   class="fas fa-file-pdf"></i> PDF</a>
-              <a href="https://github.com/cmu-pasta/fray" class="publication-link" title="GitHub Repository"><i
+              <a href="https://github.com/cmu-pasta/fray" class="publication-link" target="_blank" rel="noopener" title="GitHub Repository"><i
                   class="fab fa-github"></i> Code</a>
-              <a href="https://www.youtube.com/watch?v=AX6Pqz8gSYY&t=149s" class="publication-link"
+              <a href="https://www.youtube.com/watch?v=AX6Pqz8gSYY&t=149s" class="publication-link" target="_blank" rel="noopener"
                 title="Presentation Video"><i class="fas fa-video"></i> Video</a>
               <a href="https://www.elastic.co/search-labs/blog/optimistic-concurrency-lucene-debugging"
                 class="publication-link" title="Blog Post"><i class="fas fa-blog"></i> Blog</a>
-              <a href="https://softwaremill.com/deterministic-concurrent-testing-using-fray/" class="publication-link"
+              <a href="https://softwaremill.com/deterministic-concurrent-testing-using-fray/" class="publication-link" target="_blank" rel="noopener"
                 title="Tutorial"><i class="fas fa-blog"></i> Tutorial</a>
             </div>
             <div class="skill-tags">
@@ -370,9 +375,9 @@
               Ernst, Shuvendu Lahiri, Akash Lal, Manu Sridharan</p>
             <p class="conference">State Of the Art in Program Analysis (SOAP) 2024</p>
             <div class="publication-links">
-              <a href="https://homes.cs.washington.edu/~mernst/pubs/resource-leak-sttt2025.pdf" class="publication-link"
+              <a href="https://homes.cs.washington.edu/~mernst/pubs/resource-leak-sttt2025.pdf" class="publication-link" target="_blank" rel="noopener"
                 title="Paper PDF"><i class="fas fa-file-pdf"></i> PDF</a>
-              <a href="https://www.youtube.com/watch?v=h_ZO8e40N7Y" class="publication-link"
+              <a href="https://www.youtube.com/watch?v=h_ZO8e40N7Y" class="publication-link" target="_blank" rel="noopener"
                 title="Presentation Video"><i class="fas fa-video"></i> Video</a>
             </div>
             <div class="skill-tags">
@@ -387,9 +392,9 @@
               Kellogg, Shuvendu Lahiri, Akash Lal, Manu Sridharan</p>
             <p class="conference">Object-Oriented Programming, Systems, Languages & Applications (OOPSLA) 2023</p>
             <div class="publication-links">
-              <a href="https://dl.acm.org/doi/pdf/10.1145/3622858" class="publication-link" title="Paper PDF"><i
+              <a href="https://dl.acm.org/doi/pdf/10.1145/3622858" class="publication-link" target="_blank" rel="noopener" title="Paper PDF"><i
                   class="fas fa-file-pdf"></i> PDF</a>
-              <a href="https://github.com/typetools/checker-framework" class="publication-link"
+              <a href="https://github.com/typetools/checker-framework" class="publication-link" target="_blank" rel="noopener"
                 title="Checker Framework Repository"><i class="fab fa-github"></i> Code</a>
             </div>
             <div class="skill-tags">
@@ -404,7 +409,7 @@
             <p class="authors">Narges Shadab, Pritam Gharat, <strong>Shrey Tiwari</strong>, Shuvendu Lahiri, Akash Lal
             </p>
             <div class="publication-links">
-              <a href="https://arxiv.org/pdf/2312.01912" class="publication-link" title="Preprint PDF"><i
+              <a href="https://arxiv.org/pdf/2312.01912" class="publication-link" target="_blank" rel="noopener" title="Preprint PDF"><i
                   class="fas fa-file-pdf"></i> Preprint</a>
             </div>
             <div class="skill-tags">
@@ -467,7 +472,7 @@
         <h2>Awards & Recognition</h2>
         <div class="awards-list">
           <div class="award-item">
-            <div class="award-date">2025&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div class="award-date">2025</div>
             <div class="award-content">
               <h3>Hima and Jive Fellowship</h3>
               <p class="award-organization">Software and Societal Systems Department (S3D), Carnegie Mellon University
@@ -478,7 +483,7 @@
             </div>
           </div>
           <div class="award-item">
-            <div class="award-date">2025&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div class="award-date">2025</div>
             <div class="award-content">
               <h3>ACM SIGSOFT Distinguished Paper Award</h3>
               <p class="award-organization">Mining Software Repositories (MSR 2025), Ottawa, Canada</p>
@@ -487,7 +492,7 @@
             </div>
           </div>
           <div class="award-item">
-            <div class="award-date">2024&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div class="award-date">2024</div>
             <div class="award-content">
               <h3>SIGPLAN Student Travel Grant</h3>
               <p class="award-organization">SPLASH 2024, Pasadena, USA</p>
@@ -496,7 +501,7 @@
             </div>
           </div>
           <div class="award-item">
-            <div class="award-date">2020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div class="award-date">2020</div>
             <div class="award-content">
               <h3>University Gold Medal</h3>
               <p class="award-organization">PES University</p>
