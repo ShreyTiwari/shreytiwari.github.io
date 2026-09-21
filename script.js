@@ -2,29 +2,25 @@
 const themeToggle = document.getElementById('theme-toggle');
 const htmlElement = document.documentElement;
 const icon = themeToggle.querySelector('i');
-
-// Check for saved theme preference
-const savedTheme = localStorage.getItem('theme') || 'light';
-htmlElement.setAttribute('data-theme', savedTheme);
-updateIcon(savedTheme);
+// The inline script in <head> already restored the theme before first paint.
+updateThemeToggle(htmlElement.getAttribute('data-theme'));
 
 themeToggle.addEventListener('click', () => {
     const currentTheme = htmlElement.getAttribute('data-theme');
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
 
     htmlElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateIcon(newTheme);
+    // Private browsing or disabled storage should not break the controls.
+    try { localStorage.setItem('theme', newTheme); } catch (e) { }
+    updateThemeToggle(newTheme);
 });
 
-function updateIcon(theme) {
-    if (theme === 'dark') {
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-    } else {
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
-    }
+function updateThemeToggle(theme) {
+    icon.classList.toggle('fa-moon', theme !== 'dark');
+    icon.classList.toggle('fa-sun', theme === 'dark');
+    const label = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+    themeToggle.setAttribute('aria-label', label);
+    themeToggle.setAttribute('title', label);
 }
 
 // Mobile Navigation
