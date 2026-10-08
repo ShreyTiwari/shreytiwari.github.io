@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello, World · Shrey Tiwari</title>
+  <meta name="description" content="The first post on Shrey Tiwari's blog.">
+  <link rel="icon" type="image/png" href="../images/favicon.png">
+  <script>
+    // Inline and before the stylesheet on purpose: script.js loads at the end of <body>,
+    // so setting the theme there makes a dark-mode visitor see a white flash first.
+    try {
+      document.documentElement.setAttribute("data-theme", localStorage.getItem("theme") === "dark" ? "dark" : "light");
+    } catch (e) { }
+  </script>
+  <link rel="stylesheet" href="../styles.css?v=blog-20261008-1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-55520173VP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-55520173VP');
+  </script>
+</head>
+
+<body class="blog">
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode"
+    title="Switch to dark mode">
+    <i class="fas fa-moon" aria-hidden="true"></i>
+  </button>
+
+  <header>
+    <nav aria-label="Main navigation">
+      <div class="nav-container">
+        <a class="nav-home" href="../" aria-label="Shrey Tiwari — home">st<span>.</span></a>
+        <button class="hamburger-menu" type="button" aria-label="Toggle navigation menu" aria-expanded="false"
+          aria-controls="nav-links">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="../#news">News</a></li>
+          <li><a href="../#publications">Publications</a></li>
+          <li><a href="../#projects">Projects</a></li>
+          <li><a href="../#awards">Awards</a></li>
+          <li><a href="../#mentoring">Teaching</a></li>
+          <li><a href="../#service">Service</a></li>
+          <li><a href="./" aria-current="page">Blog</a></li>
+        </ul>
+        <div class="nav-tools">
+          <div class="social-links-header">
+            <a href="mailto:shrey@cmu.edu" target="_blank" rel="noopener" aria-label="Email" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://x.com/shrey_twr" target="_blank" rel="noopener" aria-label="X" title="X"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://github.com/ShreyTiwari" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://scholar.google.com/citations?user=0KnT458AAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar" title="Google Scholar"><i
+                class="ai ai-google-scholar"></i></a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="blog-main">
+    <div class="container">
+      <article class="post">
+        <a class="post-back" href="./">&larr; All posts</a>
+        <div class="post-header">
+          <h1>Hello, World</h1>
+          <time class="post-date" datetime="2026-10-08">October 8, 2026</time>
+        </div>
+
+        <div class="post-body">
+          <p>Hello, world.</p>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Shrey Tiwari</p>
+    </div>
+  </footer>
+
+  <script src="../script.js?v=layout-20260920-2"></script>
+</body>
+
+</html>

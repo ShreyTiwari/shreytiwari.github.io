@@ -233,6 +233,10 @@ header {
     background-color: var(--section-bg);
 }
 
+.nav-links li a[aria-current="page"] {
+    color: var(--text-color);
+}
+
 .nav-tools,
 .social-links-header {
     display: flex;
@@ -435,7 +439,8 @@ header {
 .publication-item,
 .project-item,
 .award-item,
-.mentoring-item {
+.mentoring-item,
+.post-item {
     padding: var(--sp-4) 0;
     border-bottom: 1px solid var(--card-border);
 }
@@ -443,14 +448,16 @@ header {
 .publication-item:first-child,
 .project-item:first-child,
 .award-item:first-child,
-.mentoring-item:first-child {
+.mentoring-item:first-child,
+.post-item:first-child {
     padding-top: 0;
 }
 
 .publication-item:last-child,
 .project-item:last-child,
 .award-item:last-child,
-.mentoring-item:last-child {
+.mentoring-item:last-child,
+.post-item:last-child {
     border-bottom: none;
     padding-bottom: 0;
 }
@@ -779,6 +786,154 @@ header {
     padding: 8px;
 }
 
+/* ---------------------------------------------------------------- Blog
+   blog/index.html lists posts; each post is blog/<slug>.html with the same header and
+   footer as the homepage. The pages are short, so body is a column that pins the footer
+   to the bottom of the viewport. */
+body.blog {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.blog-main {
+    flex: 1;
+    /* Clears the fixed header, as .intro does on the homepage. */
+    padding-top: var(--header-h);
+}
+
+.blog-main .container {
+    padding-top: 72px;
+    padding-bottom: 96px;
+}
+
+.blog-main h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.1rem, 4vw, 2.6rem);
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    line-height: 1.15;
+    margin-bottom: var(--sp-6);
+}
+
+/* A reading measure, left-aligned with the nav and every homepage section. */
+.post-list,
+.post {
+    max-width: 680px;
+}
+
+.post-list {
+    list-style: none;
+}
+
+.post-item {
+    display: grid;
+    grid-template-columns: 108px 1fr;
+    gap: var(--sp-5);
+    align-items: baseline;
+}
+
+.post-item-date {
+    color: var(--secondary-text);
+    font-weight: 600;
+    font-size: 0.88rem;
+}
+
+.post-item-title {
+    color: var(--text-color);
+    font-size: 1.04rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.post-back {
+    display: inline-block;
+    color: var(--secondary-text);
+    font-size: 0.88rem;
+    margin-bottom: var(--sp-5);
+}
+
+.post-header {
+    margin-bottom: var(--sp-6);
+}
+
+.post-header h1 {
+    margin-bottom: var(--sp-2);
+}
+
+.post-date {
+    color: var(--secondary-text);
+    font-weight: 600;
+    font-size: 0.88rem;
+}
+
+.post-body {
+    font-size: 1.05rem;
+    line-height: 1.75;
+}
+
+.post-body > * + * {
+    margin-top: 1.1em;
+}
+
+.post-body h2 {
+    font-size: 1.3rem;
+    letter-spacing: -0.015em;
+    line-height: 1.3;
+    margin-top: 2em;
+}
+
+/* The reset at the top of this file zeroes list padding, which pushes bullets into the margin. */
+.post-body ul,
+.post-body ol {
+    padding-left: 1.4em;
+}
+
+.post-body li + li {
+    margin-top: 0.3em;
+}
+
+.post-body a {
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--link-color) 35%, transparent);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+}
+
+.post-body a:hover {
+    text-decoration-color: currentColor;
+}
+
+.post-body code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.88em;
+    background: var(--section-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    padding: 0.1em 0.35em;
+}
+
+.post-body pre {
+    background: var(--section-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: var(--sp-4);
+    overflow-x: auto;
+    line-height: 1.55;
+}
+
+.post-body pre code {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.post-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
 /* Footer */
 footer {
     background-color: var(--footer-bg);
@@ -909,9 +1064,19 @@ footer {
     .timeline-content,
     .award-item,
     .mentoring-item,
-    .service-item {
+    .service-item,
+    .post-item {
         grid-template-columns: 1fr;
         gap: 2px;
+    }
+
+    .blog-main .container {
+        padding-top: 48px;
+        padding-bottom: 72px;
+    }
+
+    .post-body {
+        font-size: 1rem;
     }
 
     .timeline-content {
