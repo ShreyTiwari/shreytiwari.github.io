@@ -2,7 +2,7 @@
 
 ## Deployment
 
-GitHub Pages, repo `ShreyTiwari/shreytiwari.github.io`, custom domain `www.shreytiwari.com` via `CNAME`. **The live site is served from `master`** — pushing there publishes immediately. `main` (2022) and `dev` (2025) are stale; don't assume `main` is current despite git's default-branch hint.
+GitHub Pages, repo `ShreyTiwari/shreytiwari.github.io`, custom domain `www.shreytiwari.com` via `CNAME`. **The live site is served from `master`** — pushing there publishes immediately. `master` is the only branch; there is no `main`.
 
 ## Architecture notes
 
@@ -18,10 +18,10 @@ Publications and news are newest first; news has `<!-- YEAR --->` separators bet
 
 **Theming.** `styles.css` defines every color as a custom property under `:root[data-theme="light"]` and `:root[data-theme="dark"]`. Never hardcode a color in a rule — add a token to *both* blocks and reference `var(--…)`. `script.js` sets `data-theme` on `<html>`, persists it to `localStorage` under the key `theme`, and swaps the toggle button's Font Awesome class between `fa-moon` and `fa-sun`.
 
-**Responsive.** Single breakpoint: `@media (max-width: 768px)`. These blocks are scattered — each section's mobile overrides live immediately after that section's desktop rules, not in one collected block at the bottom. Put new overrides next to the rules they override. The mobile nav works by toggling `.nav-active` on `.nav-links` (see `script.js`).
+**Responsive.** Single breakpoint: one `@media (max-width: 768px)` block near the bottom of `styles.css`, with its overrides in the same order as the desktop rules above it. Put a new override at the matching position in that block. The mobile nav works by toggling `.nav-active` on `.nav-links` (see `script.js`).
 
-**Affiliates marquee** (`#affiliates`) is a CSS-animated flex strip. Every logo appears **twice** in the HTML (second set marked `<!-- Duplicate items for seamless loop -->`), and the `@keyframes scroll` translate distance is hardcoded for 8 logos: `translateX(calc(-240px * 8 - 5px * 7))` desktop, `-166px * 8` in the mobile block. Adding or removing a logo requires editing the item twice *and* both keyframe formulas, or the loop visibly jumps.
+**Affiliates marquee** (`#affiliates`) is a CSS-animated flex strip. Every logo appears **twice** in the HTML (second set marked `<!-- Duplicate items for seamless loop -->`), and the `@keyframes scroll` translate distance is hardcoded as 8 × (item width + gap): `translateX(calc(-150px * 8 - 32px * 8))` desktop, `calc(-112px * 8 - 24px * 8)` in the mobile block. Adding or removing a logo requires editing the item twice *and* both keyframe formulas, or the loop visibly jumps.
 
-Fonts are the system stack headed by `"Avenir"`; the README's mention of Google Fonts / Nunito Sans is out of date.
+Fonts are the system stack headed by `"Avenir"`; the serif display type (the `st.` mark, the name, blog titles) uses the `--serif` token.
 
 External links follow `target="_blank" rel="noopener"`.

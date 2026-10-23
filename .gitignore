@@ -1,2 +1,5 @@
 # Full-resolution source photos: kept locally for re-cropping, not served by the site.
 images/originals/
+
+# Per-user Claude Code settings; project skills under .claude/skills/ are tracked.
+.claude/settings.local.json
