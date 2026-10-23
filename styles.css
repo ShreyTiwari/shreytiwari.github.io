@@ -13,7 +13,6 @@
     --header-bg: rgba(253, 252, 251, 0.92);
     --card-bg: #fff;
     --shadow-color: rgba(35, 48, 66, 0.08);
-    --hover-color: #42a5f5;
     --footer-bg: #f5f5f3;
     --footer-text: #626873;
     --section-bg: #f5f5f3;
@@ -23,14 +22,9 @@
     --scrollbar-color: #a0b2c7;
     --tag-color: #7051ae;
     --portrait-tint: #edf1f5;
-
-    /* Added: link hover that actually passes contrast on white (the old --hover-color
-       #42a5f5 is a 2.1:1 fill and is kept for icons//accents, not body links). */
     --link-hover: #0d47a1;
-    /* Added: plate behind affiliate logos - transparent here, white in dark mode where the
-       white-background logo files would otherwise glare and the Uber mark would vanish. */
+    /* Plate behind affiliate logos: transparent here, white in dark mode (see .affiliate-logo). */
     --logo-plate: transparent;
-    /* Added: the dot/rail accent, themed so it does not disappear on dark. */
     --accent: #2c629e;
 }
 
@@ -41,7 +35,6 @@
     --header-bg: rgba(23, 26, 31, 0.92);
     --card-bg: #22272f;
     --shadow-color: rgba(0, 0, 0, 0.4);
-    --hover-color: #90caf9;
     --footer-bg: #1c2026;
     --footer-text: #a4adba;
     --section-bg: #1c2026;
@@ -51,7 +44,6 @@
     --scrollbar-color: #52647b;
     --tag-color: #b29bdf;
     --portrait-tint: #242e3a;
-
     --link-hover: #90caf9;
     --logo-plate: #ffffff;
     --accent: #90bcee;
@@ -59,6 +51,7 @@
 
 /* Layout scale - one rhythm for the whole page, so every section lines up. */
 :root {
+    --serif: Georgia, "Times New Roman", serif;
     --header-h: 64px;
     --maxw: 1040px;
     --gutter: 24px;
@@ -113,7 +106,6 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: inherit;
     font-weight: 600;
 }
 
@@ -128,16 +120,9 @@ h1 {
     padding: 0 var(--gutter);
 }
 
-/* One background for the whole page. The old alternating light/dark slabs banded the page
-   into stripes; hairline rules separate sections instead. */
-section {
-    padding: 0;
-    background-color: var(--bg-color);
-    transition: background-color 0.3s ease;
-}
-
-/* Vertical rhythm lives on the container, not the section, so the hairline rule between
-   two sections sits in the middle of the gap instead of adding a third helping of padding. */
+/* Sections share the page background; hairline rules separate them. Vertical rhythm lives
+   on the container, not the section, so the rule between two sections sits in the middle
+   of the gap instead of adding a third helping of padding. */
 section .container {
     padding-top: var(--sp-6);
     padding-bottom: var(--sp-6);
@@ -147,20 +132,13 @@ section+section .container {
     border-top: 1px solid var(--card-border);
 }
 
-section[id] {
-    scroll-margin-top: 0;
-}
-
 /* Section headings sit above their contents in the hierarchy: larger and darker than any
-   item title inside the section (paper titles and project titles are 1.04rem). The original
-   2.5rem display line was the opposite problem - ~90px of chrome per section. */
+   item title inside the section (paper titles and project titles are 1.04rem). */
 section h2 {
     font-size: 1.35rem;
     font-weight: 700;
     letter-spacing: -0.015em;
-    color: var(--text-color);
     margin-bottom: var(--sp-5);
-    text-align: left;
 }
 
 /* Header and Navigation */
@@ -190,7 +168,7 @@ header {
 
 .nav-home {
     flex: 0 0 auto;
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: var(--serif);
     font-size: 1.7rem;
     font-weight: 600;
     letter-spacing: -0.08em;
@@ -208,12 +186,6 @@ header {
     justify-content: center;
     flex: 1;
     list-style: none;
-    padding: 0;
-    gap: 0;
-}
-
-.nav-links li {
-    margin: 0;
 }
 
 .nav-links li a {
@@ -388,7 +360,7 @@ header {
 }
 
 .bio h1 {
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: var(--serif);
     font-size: clamp(2.3rem, 4vw, 2.8rem);
     font-weight: 400;
     letter-spacing: -0.045em;
@@ -434,8 +406,7 @@ header {
 }
 
 /* ---------------------------------------------------------------- Shared list rows
-   Publications, projects, awards, mentoring and news all used different padding and
-   line-heights. They now share one row rhythm. */
+   Publications, projects, awards, mentoring and blog posts share one row rhythm. */
 .publication-item,
 .project-item,
 .award-item,
@@ -485,8 +456,7 @@ header {
     display: inline;
 }
 
-/* "Under Review" had no rule at all, so it rendered as full-size body text - the most
-   prominent thing in the entry. It is metadata; it now reads as metadata. */
+/* "Under Review" is metadata, so it is a small label beside the venue, not body text. */
 .publication-item .status {
     display: inline;
     font-size: 0.78rem;
@@ -571,12 +541,9 @@ header {
     line-height: 1.55;
 }
 
-/* ---------------------------------------------------------------- News timeline
-   Was a 400px fixed-height inner scroller, pulled 20px left of every other section, with
-   the date stacked above the headline. Now a full-flow two-column list on the page rhythm. */
+/* ---------------------------------------------------------------- News timeline */
 .timeline {
     position: relative;
-    margin: 0;
     /* News is the one section long enough to warrant its own scroller. */
     max-height: 320px;
     overflow-y: auto;
@@ -674,7 +641,6 @@ header {
     gap: var(--sp-5);
 }
 
-/* The award dates were padded with nine hardcoded &nbsp; to fake this column. */
 .award-date,
 .mentoring-date {
     color: var(--secondary-text);
@@ -727,22 +693,20 @@ header {
     color: var(--text-color);
     font-size: 0.95rem;
     font-weight: 600;
-    margin: 0;
 }
 
 .service-details {
     color: var(--secondary-text);
     font-size: 0.92rem;
-    margin: 0;
     line-height: 1.5;
 }
 
 /* ---------------------------------------------------------------- Affiliates
    8 unique logos, duplicated in the HTML for a seamless loop. The keyframe distance must
-   equal 8 x (item width + gap) or the strip jumps - the old formula used 240px for a 200px
-   item and counted 7 gaps instead of 8, so it was off by 315px every cycle. */
+   equal 8 x (item width + gap), here and in the mobile block, or the strip jumps. */
 #affiliates {
     background-color: var(--section-bg);
+    transition: background-color 0.3s ease;
 }
 
 .affiliates-grid {
@@ -808,7 +772,7 @@ body.blog {
 }
 
 .blog-main h1 {
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: var(--serif);
     font-size: clamp(2.1rem, 4vw, 2.6rem);
     font-weight: 400;
     letter-spacing: -0.04em;
@@ -830,7 +794,7 @@ body.blog {
    Sizes follow the homepage rows: 0.9rem secondary lines, 0.88rem meta. */
 .post-item-title {
     display: inline-block;
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: var(--serif);
     font-size: 1.3rem;
     font-weight: 400;
     letter-spacing: -0.02em;
@@ -1005,38 +969,25 @@ footer {
 }
 
 /* ---------------------------------------------------------------- Responsive
-   Single breakpoint. Note the old file gave mobile MORE section padding than desktop. */
+   Single breakpoint; every mobile override lives in this block, in the same order as the
+   rules above. */
 @media (max-width: 768px) {
     :root {
         --gutter: 18px;
         --sp-7: 32px;
     }
 
-    .container {
-        width: 100%;
+    section h2 {
+        font-size: 1.2rem;
+        margin-bottom: var(--sp-4);
     }
 
     .nav-container {
         position: relative;
     }
 
-    .hamburger-menu {
-        display: block;
-        order: 1;
-    }
-
     .nav-home {
         display: none;
-    }
-
-    .nav-tools {
-        order: 2;
-        gap: 10px;
-    }
-
-    .social-links-header a {
-        width: 30px;
-        height: 40px;
     }
 
     .nav-links {
@@ -1075,15 +1026,31 @@ footer {
         border-radius: 5px;
     }
 
-    /* A compact portrait and affiliation row leads into the introduction on mobile. */
+    .nav-tools {
+        order: 2;
+        gap: 10px;
+    }
+
+    .social-links-header a {
+        width: 30px;
+        height: 40px;
+    }
+
+    .hamburger-menu {
+        display: block;
+        order: 1;
+    }
+
+    .theme-toggle {
+        bottom: 16px;
+        right: 16px;
+        width: 38px;
+        height: 38px;
+    }
+
     .intro .container {
         padding-top: 80px;
         padding-bottom: 80px;
-    }
-
-    section h2 {
-        font-size: 1.2rem;
-        margin-bottom: var(--sp-4);
     }
 
     .intro-grid {
@@ -1091,6 +1058,7 @@ footer {
         gap: var(--sp-5);
     }
 
+    /* A compact portrait and affiliation row leads into the introduction on mobile. */
     .intro-id {
         flex-direction: row;
         align-items: center;
@@ -1117,8 +1085,17 @@ footer {
         margin-bottom: var(--sp-4);
     }
 
+    .publication-item .paper-title,
+    .project-title {
+        font-size: 1rem;
+    }
+
     .timeline {
         max-height: 300px;
+    }
+
+    .timeline-content {
+        margin-left: var(--sp-4);
     }
 
     .timeline-content,
@@ -1127,44 +1104,6 @@ footer {
     .service-item {
         grid-template-columns: 1fr;
         gap: 2px;
-    }
-
-    .post-item-title {
-        font-size: 1.2rem;
-    }
-
-    .post-item.has-thumb {
-        grid-template-columns: 1fr;
-        gap: var(--sp-4);
-    }
-
-    .post-item-thumb {
-        order: -1;
-    }
-
-    .blog-main .container {
-        padding-top: 48px;
-        padding-bottom: 72px;
-    }
-
-    .post-body {
-        font-size: 1rem;
-    }
-
-    .timeline-content {
-        margin-left: var(--sp-4);
-    }
-
-    .publication-item .paper-title,
-    .project-title {
-        font-size: 1rem;
-    }
-
-    .theme-toggle {
-        bottom: 16px;
-        right: 16px;
-        width: 38px;
-        height: 38px;
     }
 
     .affiliates-grid {
@@ -1187,6 +1126,28 @@ footer {
         100% {
             transform: translateX(calc(-112px * 8 - 24px * 8));
         }
+    }
+
+    .blog-main .container {
+        padding-top: 48px;
+        padding-bottom: 72px;
+    }
+
+    .post-item-title {
+        font-size: 1.2rem;
+    }
+
+    .post-item.has-thumb {
+        grid-template-columns: 1fr;
+        gap: var(--sp-4);
+    }
+
+    .post-item-thumb {
+        order: -1;
+    }
+
+    .post-body {
+        font-size: 1rem;
     }
 }
 
