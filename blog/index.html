@@ -14,7 +14,7 @@
       document.documentElement.setAttribute("data-theme", localStorage.getItem("theme") === "dark" ? "dark" : "light");
     } catch (e) { }
   </script>
-  <link rel="stylesheet" href="../styles.css?v=blog-20261008-1">
+  <link rel="stylesheet" href="../styles.css?v=blog-20261022-8">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
@@ -68,11 +68,28 @@
     <div class="container">
       <h1>Blog<span class="name-dot" aria-hidden="true">.</span></h1>
 
-      <!-- Newest first. Each post is blog/<slug>.html; copy hello-world.html to start one. -->
+      <!-- Newest first. Each post is blog/<slug>.html (copy hello-world.html to start one) or an external link. -->
       <ul class="post-list">
+        <li class="post-item has-thumb">
+          <div class="post-item-text">
+            <a class="post-item-title" href="https://thelastsoftwareengineer.substack.com/p/we-probably-cannot-automate-the-software"
+              target="_blank" rel="noopener">We probably cannot automate the <span class="nowrap">software engineer away<i
+                  class="fas fa-arrow-up-right-from-square post-item-external" aria-hidden="true"></i></span><span class="sr-only"> (on Substack)</span></a>
+            <p class="post-item-dek">AI can now write all of the code, but it cannot automate what it is never told about: only the
+              world shows what nobody planned for, and it still takes a software engineer to decide what to do about it.</p>
+            <p class="post-item-meta"><time datetime="2026-10-22">October 22, 2026</time><span class="sep">&middot;</span>8 min
+              read<span class="sep">&middot;</span>Substack</p>
+          </div>
+          <!-- Same header photo as the Substack post: Caleb Oquendo on Pexels. -->
+          <a class="post-item-thumb" href="https://thelastsoftwareengineer.substack.com/p/we-probably-cannot-automate-the-software"
+            target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <img src="../images/blog/rubber-duck.jpg" alt="" loading="lazy" width="800" height="447">
+          </a>
+        </li>
         <li class="post-item">
-          <time class="post-item-date" datetime="2026-10-08">Oct 8, 2026</time>
           <a class="post-item-title" href="hello-world.html">Hello, World</a>
+          <p class="post-item-dek">The first post on Shrey Tiwari's blog.</p>
+          <p class="post-item-meta"><time datetime="2026-10-08">October 8, 2026</time></p>
         </li>
       </ul>
     </div>

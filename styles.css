@@ -816,34 +816,94 @@ body.blog {
     margin-bottom: var(--sp-6);
 }
 
-/* A reading measure, left-aligned with the nav and every homepage section. */
-.post-list,
+/* A reading measure for post bodies, left-aligned with the nav and every homepage section. */
 .post {
     max-width: 680px;
 }
 
+/* The list spans the container like the homepage lists, and its rows share their rhythm. */
 .post-list {
     list-style: none;
 }
 
-.post-item {
-    display: grid;
-    grid-template-columns: 108px 1fr;
-    gap: var(--sp-5);
-    align-items: baseline;
+/* Each entry echoes a post's header: serif title, a lede sentence, then the date line.
+   Sizes follow the homepage rows: 0.9rem secondary lines, 0.88rem meta. */
+.post-item-title {
+    display: inline-block;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    color: var(--text-color);
 }
 
-.post-item-date {
+.post-item-title:hover {
+    color: var(--link-color);
+}
+
+/* Keeps a title's closing phrase on one line so the break lands where the author wants it. */
+.post-item-title .nowrap {
+    white-space: nowrap;
+}
+
+.post-item-dek {
+    margin-top: 3px;
+    color: var(--secondary-text);
+    font-size: 0.9rem;
+    line-height: 1.45;
+    text-wrap: pretty;
+}
+
+.post-item-meta {
+    margin-top: var(--sp-2);
     color: var(--secondary-text);
     font-weight: 600;
     font-size: 0.88rem;
 }
 
-.post-item-title {
-    color: var(--text-color);
-    font-size: 1.04rem;
-    font-weight: 600;
-    line-height: 1.4;
+.post-item-meta .sep {
+    margin: 0 0.4em;
+}
+
+/* An entry with a cover photo puts it beside the text, cropped to 3:2 like a social card. */
+.post-item.has-thumb {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: var(--sp-6);
+    align-items: center;
+}
+
+.post-item-thumb {
+    display: block;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid var(--card-border);
+}
+
+.post-item-thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Posts hosted elsewhere (Substack) get a small outbound mark after the title. */
+.post-item-external {
+    color: var(--secondary-text);
+    font-size: 0.6em;
+    margin-left: 0.3em;
+    vertical-align: 0.15em;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
 }
 
 .post-back {
@@ -1064,10 +1124,22 @@ footer {
     .timeline-content,
     .award-item,
     .mentoring-item,
-    .service-item,
-    .post-item {
+    .service-item {
         grid-template-columns: 1fr;
         gap: 2px;
+    }
+
+    .post-item-title {
+        font-size: 1.2rem;
+    }
+
+    .post-item.has-thumb {
+        grid-template-columns: 1fr;
+        gap: var(--sp-4);
+    }
+
+    .post-item-thumb {
+        order: -1;
     }
 
     .blog-main .container {
